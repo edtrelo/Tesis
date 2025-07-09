@@ -1,0 +1,46 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": ["-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"]
+    },
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": ["-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": ["%DOC%"]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pdflatex -> biber -> pdflatex x2",
+      "tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
+    },
+    {
+      "name": "xelatex -> biber -> xelatex x2",
+      "tools": ["xelatex", "biber", "xelatex", "xelatex"]
+    }
+  ],
+  "files.exclude": {
+  "**/*.aux": true,
+  "**/*.log": true,
+  "**/*.out": true,
+  "**/*.toc": true,
+  "**/*.synctex.gz": true,
+  "**/*.fls": true,
+  "**/*.fdb_latexmk": true,
+  "**/*.run.xml": true,
+  "**/*.bbl": true,
+  "**/*.bcf": true,
+  "**/*.blg": true
+  },
+  "latex-workshop.latex.recipe.default": "xelatex -> biber -> xelatex x2",
+  "latex-workshop.bibtex-format": "biblatex",
+  "latex-workshop.latex.bibDirs": ["./"]
+}
+

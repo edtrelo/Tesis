@@ -1,0 +1,110 @@
+\documentclass[letterpaper,12pt,spanish]{book} 
+\usepackage[
+    es-tabla,es-nodecimaldot
+    ]{babel} %es-nodecimaldot es para usar punto como separador
+\usepackage{lipsum} % Lorem Ipsum dummy text
+\usepackage{amssymb, amsmath, amsthm, csquotes}
+\usepackage[
+    top=1.5in, left=1.25in, right=1.25in, bottom=1.5in
+    ]{geometry} % Tamaño de papel y margen
+\setlength{\parskip}{10pt} % Espacio entre párrafos
+\usepackage{import}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ALG@numberline}{\hfil\relax}{}{}{}
+\renewcommand{\alglinenumber}[1]{\footnotesize #1\hspace{1em}} % sin punto, con espaciado
+\makeatother
+%------------------------------------------
+% PORTADA
+%------------------------------------------
+\import{cover}{cover.tex}
+%------------------------------------------
+% ESTILO DE LAS PÁGINAS
+%------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Limpiar encabezado y pie
+% Encabezados personalizados
+% Página par (E: even), encabezado derecho (R: right)
+% Página impar (O: odd), encabezado izquierdo (L: left)
+\fancyhead[RE]{
+    \textbf{\nouppercase{Capítulo \thechapter. \leftmark}}
+    } 
+\fancyhead[LO]{
+    \textbf{\nouppercase{\thesection\ \rightmark}}
+    }          
+% Pie de página centrado
+\fancyfoot[C]{\thepage}
+% Líneas
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+% Actualizar las marcas
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\setlength{\headheight}{14.5pt}
+\usepackage{emptypage} % Evita numerar la página que deja 
+% en blanco el salto de capítulo
+%------------------------------------------
+% MATHEMATICAL ENVIROMENTS
+%------------------------------------------
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definition}{Definición}[section]
+\newtheorem{proposition}{Proposición}[section]
+\newtheorem*{example}{Ejemplo}
+\newcommand*\btheta{\boldsymbol{\theta}}
+%------------------------------------------
+% PREÁMBULO PARA REFERENCIAS
+%------------------------------------------
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib} 
+\usepackage[hidelinks]{hyperref} % Necesario para usar la solución de capítulos sin número: https://tex.stackexchange.com/questions/11668/adding-unnumbered-sections-to-toc
+%\renewcommand{\contentsname}{}
+%------------------------------------------
+% INICIO DE DOCUMENTO 
+%------------------------------------------
+\begin{document} % Inicia el documento
+
+\maketitle % Crea portada
+\tableofcontents % Index 
+\markboth{}{}
+
+
+%\chapter{Motivación}
+%\subfile{capitulos/motivacion}
+
+\chapter*{Introducción}\label{cap:intro}
+\addcontentsline{toc}{chapter}{\nameref{cap:intro}}
+%\subfile{capitulos/introduccion}
+
+\chapter
+{Principios de probabilidad e inferencia estadística}
+\label{cap:01}
+\input{capitulos/cap01/_main_.tex}
+
+\chapter{Ecuaciones diferenciales estocásticas y procesos de difusión}
+\label{cap:02}
+\input{capitulos/cap02/_main_.tex}
+%\subfile{capitulos/resultados}
+
+\chapter[Algunos métodos de inferencia para EDEs]
+{Algunos métodos de inferencia para ecuaciones diferenciales estocásticas}
+\label{cap:03}
+\input{capitulos/cap03/_main_.tex}
+
+\chapter{Aplicaciones a modelos epidemiológicos compartamentales}
+\label{cap:04}
+\input{capitulos/cap04/_main_.tex}
+
+\chapter{Conclusiones}
+\label{cap:05}
+%\cite{aliStochasticModelingInfluenza2024}
+%\subfile{capitulos/conclusiones}
+% \bibliographystyle{ieeetr}    % o 'apalike', 'ieeetr', 'alpha', etc.
+% \bibliography{references.bib} 
+\printbibliography
+\end{document}

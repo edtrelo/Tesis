@@ -1,0 +1,62 @@
+\section{Inferencia bayesiana}
+
+Supongamos que tenemos una muestra $\mathcal D_N = \left(y_1,...,y_N\right)$ de variables aleatorias independientes e idénticamente distribuidas 
+cuya función de densidad $f$ está parametrizada por $\boldsymbol{\theta} = (\theta_1,...,\theta_K) \in \Theta$, cuyo valor real es desconocido. 
+La \textit{inferencia (estadística)} toma las observaciones $\mathcal D$, las procesa y trata de encontrar formas de describir a $\boldsymbol{\theta}$. \\
+
+En el \textit{enfoque Bayesiano} de la inferencia estadística suponemos que la probabilidad es una medida de la incertidumbre, que resulta útil para analizar fenómenos que no podemos reproducir tantas veces como queramos. En este contexto, se trata a $\btheta$ como una variable aleatoria (o vector aleatorio, según el valor de $K$) y las observaciones que recolectemos nos ayudarán a ajustar nuestras creencias acerca de $\btheta$.\\
+
+El análisis Bayesiano sigue este proceso: 
+
+\begin{enumerate}
+    \item Toda la información y creencias que tenemos acerca de $\btheta$ se cuantifican dentro de la \textit{distribución a priori}, $p(\btheta)$.
+    \item Se recolecta una muestra $\mathcal D_n$, cuya generación suponemos que depende del parámetro. Debemos entonces relacionar las observaciones y el parámetro a través de la función de \textit{verosimilitud}, $p(\mathcal D_n|\btheta)$.
+    \item Ajustamos la información que tenemos de $\btheta$ dado que hemos observado la muestra. Esto se hace a través del Teorema de Bayes,
+    $$p(\btheta|\mathcal D_n) = \frac{p(\mathcal D_n|\btheta)p(\btheta)}{p(\mathcal D_n)}$$
+    La inferencia se hace sobre la llamada \textit{distribución posteriori}, $p(\btheta|\mathcal D_n)$.
+\end{enumerate}
+
+\subsection{Modelos de Markov parcialmente observados}
+
+
+Sea $\btheta\in\Theta\subseteq \mathbb R^K$. Para cada valor fijo de $\btheta$, el proceso estocástico $\boldsymbol{X} = \{X(t,\btheta)\}_{t\in T}$ 
+representa un sistema dinámico que no podemos observar directamente y cuya evolución futura depende únicamente del valor actual del sistema, 
+\begin{equation}\label{eq:MarkovProperty}
+    p(X_{\tau_{n+1}}|\ X_{\tau_0},...,X_{\tau_n},\btheta) = f(X_{\tau_{n+1}}|X_{\tau_n}, \btheta)
+\end{equation}
+es decir, $\boldsymbol{X}$ es un proceso de Markov, para $\tau_0<...<\tau_n<\tau_{n+1}$. En favor de la claridad, se utilizá la siguiente notación $X_i$ para denotar a  $X(t_i, \btheta)$ cuando sea claro que $\btheta$ está fijo 
+y $X_{i:j}$ para aludir a $(X_i,\ X_{i+1},\ ...,\ X_j)$.\\
+
+El proceso $\boldsymbol{X}$ sólo puede ser observado indirectamente y es través de otro proceso $\boldsymbol{Y} = \{Y(t, \btheta)\}_{t\in T_{obs}}$ donde $T_{obs}=\{t_i\in 
+T,\ i=1,...,N\}$ son los tiempos en los que se realizan estas observaciones. Sea $t_0\in T$ el tiempo en que inicia el proceso $\boldsymbol{X}$ y $t_0\leq t_1 < t_2 <\ ...\ <t_{N}$. En general, el conjunto de índices de las observaciones es subconjunto de los Naturales. Las variables aleatorias observables $Y_{1:N}$ son condicionalmente independientes dadas $X_{0:N}$ y la observación al tiempo actual sólo depende del estado del sistema en tal momento,
+\begin{equation}\label{eq:ObservationProbability}
+    p(Y_{n}|\ Y_{1:n-1}, X_{0:n}, \btheta) = g(Y_n| X_n, \btheta) 
+\end{equation}
+Finalmente, al tiempo $t_0$, el estado inicial del sistema está sujeto a la distribución inicial
+\begin{equation}\label{eq:InitialDistribution}
+    p(X_{0}|\btheta) = \mu(\btheta)
+\end{equation}
+
+\begin{definition}
+    Un sistema dinámico $X$ con conjunto de observaciones $Y$ que cumple con \ref{eq:MarkovProperty}, 
+    \ref{eq:ObservationProbability} y \ref{eq:InitialDistribution} es un 
+    \textit{proceso de Markov parcialmente observado}, denotado como 
+    \begin{align}\label{eq:POMP}
+       \begin{split}
+        X_{n}&\sim f(X_{n-1},\btheta)\\
+        Y_{n}&\sim g(X_n,\btheta)\\
+        X_0&\sim\mu(\btheta)
+    \end{split} 
+    \end{align}
+\end{definition}
+
+En la literatura, a \ref{eq:POMP} también se le conoce como \textit{state-space model} o \textit{hidden Markov model}.
+
+\subsection{Filtrado}
+
+En general, buscamos estimar los estados ocultos del sistema $X_{0:N}$ dadas las observaciones $Y_{1:N}$. En teoría, la \textit{distribución a posteriori} de los estados está dada por el Teorema de Bayes,
+\begin{equation}
+    p(X_{0:N}|Y_{1:N}) = \frac{P(Y_{1:N}|X_{0:N})P(X_{0:N})}{P(Y_{1:N})}
+\end{equation}
+
+

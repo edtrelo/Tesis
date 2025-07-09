@@ -1,0 +1,46 @@
+\section{Observaciones directas de todas las variables}
+
+\subsection{Aproximación por esquema de simulación}
+
+Este método no aproxima las densidades de transición directamente 
+sino que aproxima la solución de la ecuación diferencial 
+estocástica de forma tal que el proceso discretizado tiene 
+una densidad de transición que conozcamos 
+\cite{iacusSimulationInferenceStochastic2008}. Según el esquema
+usado para aproximar la solución, obtenemos una u otra densidad de 
+transición. El esquema de Euler-Maruyama, al ser la aproximación 
+más básica de la solución, es generalmente el más elegido 
+cuando se usa este método de inferencia \cite{ozdemircalikusuFittingItoStochastic2021}.
+La aproximación de la solución a la ecuación diferencial estocástica
+\begin{equation*}
+    dX_t = f_\theta(X_t,t)dt + g_\theta(X_t,t)dW_t
+\end{equation*}
+donde $X_t\in \mathbb R^d$, $f_\theta:\mathbb R^d \to 
+\mathbb R^d$, $g_\theta: \mathbb R^d \to \mathbb R^{d\times q}$ y theta
+$W_t\in \mathbb R^q$, por el esquema de Euler-Maruyama está 
+dado de forma recursiva por 
+\begin{equation}\label{eq:EM_cap311}
+    Y_{t_{i+1}}= Y_{t_i} + f_\theta(Y_{t_i},t_i)\Delta t_i + 
+g_\theta(Y_{t_i},t_i)(W_{t_{i+1}}-W_{t_i})
+\end{equation}
+De la Proposición \ref{prop:dist_saltos_MB}, se sabe que 
+$W_{t_{i+1}}-W_{t_i}$ tiene distribución $N_q(0,\ \Delta t_i I_q)$ y 
+al aplicarle la transformación lineal en \ref{eq:EM_cap311}, 
+se sigue que
+$$Y_{t_{i+1}}\sim N_d\left(Y_{t_i} + f_\theta(Y_{t_i},t_i)\Delta t_i,\ 
+\Delta t_i g_\theta(Y_{t_i},t_i)g_\theta(Y_{t_i},t_i)^T\right)$$
+Se tiene entonces que el proceso aproximado tiene densidades de 
+transición 
+$$p(Y_{t_{i+1}}|Y_{t_i},\theta) = \frac{\exp\left(-\frac{1}{2\Delta_i}(Y_{t_{i+1}}-
+Y_{t_i}-f_i\Delta_i)(g_ig_i^T)^{-1}(Y_{t_{i+1}}-
+Y_{t_i}-f_i\Delta_i)^T \right)}{\sqrt{2\pi 
+\Delta t_i \det(g_ig_i^T)}}$$
+
+% Este método de inferencia es compatible para el escenario donde 
+% se tiene acceso las observaciones de $X_t$. En el contexto 
+% epidemiológico, los datos a los que se tiene acceso en la 
+% vida real generalmente son de nuevas infecciones y nuevas 
+% recuperaciones (o nuevos fallecimientos). Es decir, sólo 
+% tenemos acceso a $Z_{t_i} = X_{t_{i+1}}-X_{t_i}$. De \ref{eq:EM_cap311}
+% se sigue que 
+% $$Z_i \sim N_d(f(Y_{}))$$

@@ -1,0 +1,99 @@
+\section{Resultados básicos de probabilidad}
+\cite{billingsleyProbabilityMeasure1995}
+
+Considerese un espacio de probabilidad $(\Omega,
+\mathcal F, P)$ definido como en 
+\cite{rinconCursoIntermedioProbabilidad2007}. 
+
+%\begin{theorem}[Teorema de Bayes]
+%\end{theorem}
+
+% ----------------------------------------- %
+% NUEVA SUBSECCIÓN 
+% ----------------------------------------- %
+
+\subsection{Variables y vectores aleatorios} 
+
+\begin{definition}
+    Se dice que una función $g:\mathbb R^n\to \mathbb R^m$  
+    es Borel medible si $g^{-1}(B)\in \mathcal B(\mathbb R^n)$ para 
+    cada $B\in \mathcal B(\mathbb R^m)$.
+\end{definition}
+
+\begin{proposition}
+    Si $f:\mathbb R^n\to \mathbb R^m$ es continua, entonces es
+    Borel medible.
+\end{proposition}
+
+\begin{theorem}[Teorema de cambio de variable]
+    Sea $X$ una varible aleatoria continua con soporte en 
+    $(a,b)\subseteq \mathbb R$ y función de densidad $f_X$. Sea 
+    $g:(a,b)\to \mathbb R$ una función continua, estrictamente 
+    creciente o decrediente y cuya inversa es diferenciable. 
+    Entonces $Y=g(X)$ toma valores en el intervalo $g(a,b)$ y 
+    su función de densidad es 
+    $$f_Y(y) = 
+    \begin{cases}
+    f_X(g^{-1}(y))\left|\frac{d}{dy}g^{-1}(y)\right| & \text{para } y\in g(a,b)\\
+    0 & \text{en otro caso}
+    \end{cases}$$
+\end{theorem}
+
+\noindent\textbf{Ejemplo.} Sea $Y=\frac{1}{X}$ donde $X\sim U(a,b)$, 
+con $0<a<b$. La función $g(x) = \frac{1}{x}$ es continua y 
+estrictamente decreciente en $(a,b)$ y su inversa, que es ella
+misma, es diferenciable. Entonces 
+$$f_Y(y) = \frac{1}{(b-a)y^2}
+\cdot \mathbb I_{\left(\frac{1}{b},\frac{1}{a}\right)}(y)$$
+
+\subsection{Independencia}
+
+\begin{definition}
+    Los vectores aleatorios $X=(X_1,...,X_n)$ y $Y=(Y_1,...,Y_m)$
+    son independientes, si para cada $A\in \mathcal B(\mathbb R^n)$
+    y cada $B\in \mathcal B(\mathbb R^m)$ se cumple que
+    $$P(X\in A,\ Y\in B)=P(X\in A)P(X\in B)$$
+\end{definition}
+
+\begin{proposition}\label{prop:fun_vect_indep}
+    Sean $X=(X_1,...,X_n)$ y $Y=(Y_1,...,Y_p)$ independientes. Si 
+    $f:\mathbb R^n \to \mathbb R^m$ y $g:\mathbb R^p \to \mathbb R^q$
+    son dos funciones Borel medibles, entonces los vectores
+    aleatorios $f(X)$ y $g(Y)$ son independientes.
+\end{proposition}
+
+\begin{proof}
+    Sean $A$ y $B$ cualesquiera dos conjuntos de Borel en $\mathbb R^n$
+    y $\mathbb R^m$, repectivamente. Entonces
+    \begin{align*}
+        P(f(X)\in A,\ g(X)\in B)&= P(X\in f^{-1}(A),Y\in f^{-1}(B))\\
+        &=  P(X\in f^{-1}(A))P(Y\in f^{-1}(B))\\
+        &=  P(f(X)\in A)P(g(Y)\in B)
+    \end{align*}
+\end{proof}
+
+\subsection{Distribuciones}
+
+\begin{definition}[Distribución Normal Multivariada]
+    Se dice que el vector aleatorio $X$ tiene una distribución
+    Normal $p$-variada (multivariada si no se hace referencia 
+    a la dimensión de $X$) si y solo si $v^TX$ es Normal univaridada
+    para todo $v\in \mathbb R^p$.
+\end{definition}
+
+Además, si $X$ de distribuye Normal $p$-variada y tiene media 
+$\mu\in \mathbb R^p$ y matriz de covarianza definida positiva
+$\Sigma \in \mathbb R^{p\times p}$, entonces se escribe
+$X\sim N_p(\mu,\ \Sigma)$ y su función de densidad es 
+\begin{equation*}
+    f(x) = \frac{1}{\sqrt{2\pi\det(\Sigma)}}\cdot 
+    \exp\left(
+        -\frac{1}{2}(x-\mu)^T \Sigma^{-1} (x-\mu)
+    \right)
+\end{equation*}
+
+\begin{theorem}
+Si $X\sim N_p(\mu,\ \Sigma)$ y $Y=AX+c$, donde 
+$A\in \mathbb R^{p\times q}$ y $c\in \mathbb R^q$, 
+entonces $Y\sim N_q(A\mu + c,\ A\Sigma A^T)$.
+\end{theorem}

@@ -1,0 +1,109 @@
+\section{Solución numérica de EDEs}\label{sec:metodos_numericos}
+\textcite{rackauckasDifferentialEquationsjlPerformantFeatureRich2017a}
+Dado que la solución analítica de una ecuación diferencial estocástica 
+es, en general, imposible de calcular, se tiene que recurrir a 
+métodos  numéricos que aproximen esa solución. Hay una amplia 
+variedad de métodos numéricos desarrollados para este fin, sin 
+embargo se optó por usar un método que es fácil de implementar
+si el proceso de difusión es multivariado, el método de Euler-Maruyama.
+Otros métodos existen y, en general, tienen un mejor desempeño 
+pero su implementación implica un mayor esfuerzo. Entre estos 
+se encuentran los métodos de Milstein, Runge-Kutta.
+
+\subsection{Convergencia y consistencia}
+
+\begin{definition}
+    Una aproximación a tiempo discreto $Y^\delta$, donde $\delta$ es el 
+    tamaño de paso máximo, tiene un nivel de convergencia fuerte $\gamma$
+    al proceso $X$ si existe una constante positiva $K$, que no depende de 
+    $\delta$, y un $\delta_0>0$ tal que 
+    $$\mathbb E\left(|X_t - Y_t^\delta|\right)\leq K\delta^\gamma$$
+    para todo $t\geq 0$ y toda $\delta \in (0,\delta_0)$.
+\end{definition}
+
+\subsection{Método de Euler-Maruyama}
+Si quiere obtenerse 
+una aproximación de la solución a la ecuación tal 
+en el intervalo $[t_0,T]$ tal que $X_0 = x_0$. Considérese la partición 
+$t_0=\tau_0<\tau_1<...<\tau_n=T$ y defínase $\Delta_i=\tau_{i+1}-\tau_i$
+para $i=0,...,n-1$. El proceso estocástico continuo $Y=\{Y_t\}_{t\geq t_0}^T$ 
+se define, generalmente, como la interpolación lineal del conjunto de puntos 
+$\{(\tau_i, Y_{\tau_i}):i=0,...,n)\}$ donde 
+$Y_{\tau_0}=x_0$ y el resto satisfacen la relación iterativa
+\begin{equation}\label{eq:EM}
+Y_{\tau_{i+1}}=Y_{\tau_{i}}+f(X_{\tau_i},\tau_i)\Delta_i 
++ g(Y_{\tau_i},\tau_i)\Delta_i(W_{\tau_{i+1}}-W_{\tau_i})   
+\end{equation}
+para  $i=0,...,n-1$. En general, se toma una partición con puntos
+equidistantes, es decir, $\Delta_i = \Delta = \frac{T-t_0}{n}$ y $\tau_i = \tau_0+i\Delta$. 
+Para  simular este proceso, se usa la normalidad de los incrementos 
+del movimiento Browniano (ver algoritmo \ref{alg:EM}). La paquetería 
+\texttt{DifferentialEquations.jl} permite resolver una ecuación estocástica
+con este esquema especificnado \texttt{EM()} como método y
+un valor para $\Delta$ por medio del parámetro \texttt{dt}, siendo 
+$\Delta=\frac{T-t_0}{n}$, para algún $n\in \mathbb N_+$, de modo que 
+el valor en la última posición del vector arrojado por el algoritmo 
+corresponda a $Y_{T}$.
+
+\begin{algorithm}
+\caption{Esquema de Euler-Maruyama}
+\label{alg:EM}
+\begin{algorithmic}[1]
+\vspace{0.2cm}
+\Require \parbox[t]{13cm}{
+    Función de deriva $f$, función de difusión $g$, tamaño de paso 
+    $\Delta$, lapso de tiempo $(t_0,T)$, valor inicial $x_0$
+}
+\vspace{0.2cm}
+\Ensure 
+\parbox[t]{13cm}{
+    Aproximación de la solución a $dX_t=f(X_t,t)dt+g(X_t,t)W_t$ sujeta a 
+    $X_{t_0}=x_0$ evaluada en 
+    $t\in\{t_i=t_0 + i\Delta:\ t_i\leq T,\ i\in \mathbb N_+\}$
+}
+\vspace{0.2cm}
+\State $d \leftarrow \dim(x_0)$
+\State $n\leftarrow \lfloor(T-t_0)/\Delta\rfloor$
+\State $Y \leftarrow [n+1,d]$
+\State $Y[1,:]\leftarrow x_0$
+\For{$i\in 1,...,n$}
+    \State $\varepsilon \sim N_d(0, I_d)$
+    \State $t\leftarrow t_0+i\Delta$
+    \State $Y[i+1,:]\leftarrow f(Y[i,:],t)\Delta+g(Y[i,:],t)\Delta\varepsilon$
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+El método de Euler-Maruyama tiene un orden de convergencia de 
+$\gamma = \frac{1}{2}$, mientras que los métodos de Milstein y 
+Runge-Kutta tienen tal y tal, respectivamente 
+\cite{fuchsInferenceDiffusionProcesses2013}.
+
+\subsection{Esquema de Milstein}
+
+De forma análoga que en el método de Euler-Maruyama,
+considerese una partición $t_0=\tau_0<\tau_1<...<\tau_n=T$
+equidistante, de forma que $\Delta_i=\tau_{i+1}-\tau_{i}$ 
+sea una constante $\Delta$ para todo $i=0,...,n-1$. 
+Entonces la componente $k$-ésima del proceso aproximación 
+cumple la relación iterativa siguiente 
+\begin{equation}
+    \begin{split}
+        Y_{\tau_{i+1}}^{(k)}=&Y_{\tau_i}^{(k)}+f_k(Y_{\tau_{i}},\tau_i)\Delta
++ \sum_{j=1}^m g_{kj}(Y_{\tau_i},\tau_i)\Delta W_i^{(j)}\\
+&+\sum_{j,l=1}^m\sum_{r=1}^dg_{rj}(Y_{\tau_i},\tau_i)
+\left(\frac{\partial g_{kl}}{\delta x^{(r)}}(Y_{\tau_i},\tau_i) 
+\right)\int\limits^{\tau_{i+1}}_{\tau_i} \int\limits^s_{\tau_i}dW_u^{(j)}dW_s^{(l)}
+    \end{split}
+\end{equation}
+para $i=0,...,n-1$ y donde $\Delta W_{i}=W_{\tau_{i+1}}-W_{\tau_i}$. Para una 
+dimensión, la implementación del método no tiene mayor complicación, 
+sin embargo, en el caso multivariado el cálculo de las derivadas parciales 
+de $g$ y de la doble integral representa un problema que puede atacarse 
+desde distintos enfoques y que, en ciertas condiciones, se simplifica 
+\cite{kloedenNumericalSolutionStochastic1992}. Por ejemplo, cuando 
+el coeficiente de difusión es diagonal 
+
+
+\subsection{Esquema de Runge-Kutta-Milstein}
+% pp. 373 kloeden 

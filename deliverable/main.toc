@@ -1,0 +1,25 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\nameref {cap:intro}}{5}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Principios de probabilidad e inferencia estadística}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Resultados básicos de probabilidad}{7}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Variables y vectores aleatorios}{7}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Independencia}{8}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Distribuciones}{9}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Procesos estocásticos}{9}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Movimiento Browniano}{9}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}Inferencia bayesiana}{10}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Modelos de Markov parcialmente observados}{11}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Filtrado}{12}{subsection.1.3.2}%
+\contentsline {chapter}{\numberline {2}Ecuaciones diferenciales estocásticas y procesos de difusión}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Solución numérica de EDEs}{13}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Convergencia y consistencia}{13}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Método de Euler-Maruyama}{14}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Esquema de Milstein}{15}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Esquema de Runge-Kutta-Milstein}{15}{subsection.2.1.4}%
+\contentsline {chapter}{\numberline {3}Algunos métodos de inferencia para EDEs}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Observaciones directas de todas las variables}{17}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Aproximación por esquema de simulación}{17}{subsection.3.1.1}%
+\contentsline {chapter}{\numberline {4}Aplicaciones a modelos epidemiológicos compartamentales}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Modelo SIS}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Modelo SIR}{19}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{21}{chapter.5}%
