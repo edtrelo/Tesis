@@ -69,7 +69,7 @@ corresponda a $Y_{T}$.
 \For{$i\in 1,...,n$}
     \State $\varepsilon \sim N_d(0, I_d)$
     \State $t\leftarrow t_0+i\Delta$
-    \State $Y[i+1,:]\leftarrow f(Y[i,:],t)\Delta+g(Y[i,:],t)\Delta\varepsilon$
+    \State $Y[i+1,:]\leftarrow f(Y[i,:],t)\cdot \Delta+g(Y[i,:],t)\cdot \Delta\cdot  \varepsilon$
 \EndFor
 \end{algorithmic}
 \end{algorithm}
@@ -81,13 +81,13 @@ Runge-Kutta tienen tal y tal, respectivamente
 
 \subsection{Esquema de Milstein}
 
-De forma análoga que en el método de Euler-Maruyama,
-considerese una partición $t_0=\tau_0<\tau_1<...<\tau_n=T$
+De forma análoga que en el método de Euler-Maruyama, para construir la aproximación
+de Milstein debe considerarse una partición $t_0=\tau_0<\tau_1<...<\tau_n=T$
 equidistante, de forma que $\Delta_i=\tau_{i+1}-\tau_{i}$ 
 sea una constante $\Delta$ para todo $i=0,...,n-1$. 
-Entonces la componente $k$-ésima del proceso aproximación 
-cumple la relación iterativa siguiente 
-\begin{equation}
+Entonces la componente $k$-ésima del proceso aproximación cumple la 
+relación iterativa siguiente 
+\begin{equation}\label{eq:Milstein}
     \begin{split}
         Y_{\tau_{i+1}}^{(k)}=&Y_{\tau_i}^{(k)}+f_k(Y_{\tau_{i}},\tau_i)\Delta
 + \sum_{j=1}^m g_{kj}(Y_{\tau_i},\tau_i)\Delta W_i^{(j)}\\
@@ -101,9 +101,31 @@ dimensión, la implementación del método no tiene mayor complicación,
 sin embargo, en el caso multivariado el cálculo de las derivadas parciales 
 de $g$ y de la doble integral representa un problema que puede atacarse 
 desde distintos enfoques y que, en ciertas condiciones, se simplifica 
-\cite{kloedenNumericalSolutionStochastic1992}. Por ejemplo, cuando 
-el coeficiente de difusión es diagonal 
+\cite{kloedenNumericalSolutionStochastic1992}. 
+%Por ejemplo, cuando el coeficiente de difusión es diagonal 
 
 
 \subsection{Esquema de Runge-Kutta-Milstein}
 % pp. 373 kloeden 
+Tal como en el caso determinista, el esquema de Milstein (eq. \ref{eq:Milstein})
+puede ser modificado con el fin de evitar la evaluación de las derivadas del coeficiente
+de difusión. Usando diferencias finitas se llega al esquema de Runge-Kutta-Milstein, 
+referenciado en \cite{kloedenNumericalSolutionStochastic1992} como esquema fuerte de orden
+1.0 explícito. Considerando de nuevo una partición equidistante, la $k$-ésima 
+componente de esta aproximación cumple la siguiente relación iterativa
+% Explicit Order 1.0 Strong Schemes
+\begin{equation}\label{eq:Runge-Kutta-Milstein}
+    \begin{split}
+    Y_{\tau_{i+1}}^{(k)}=&Y_{\tau_i}^{(k)} + f_k(Y_{\tau_i},\tau_i)\Delta + 
+    \sum_{j=1}^m g_{kj}(Y_{\tau_i},\tau_i)\Delta W_i^{(j)}\\ &
+    + \frac{1}{\sqrt{\Delta}}\sum_{j,l=1}^m \left(g_{k,l}(\tilde Y_{j,\tau_i}, \tau_i)- g_{k,l}(Y_{\tau_i},\tau_i) 
+    \right)\int\limits^{\tau_{i+1}}_{\tau_i} \int\limits^s_{\tau_i}dW_u^{(j)}dW_s^{(l)}\\
+    \tilde Y_{j,\tau_i}=& Y_{\tau_i}+f(Y_{\tau_i},\tau_i)\Delta + g_{:,j}(Y_{\tau_i},\tau_i)\sqrt{\Delta}
+    \end{split}
+\end{equation}
+% sigma_{:,j} j-ésima columna de sigma
+para $i=0,...,n-1$ y $j=1,...,m$ y donde $\Delta W_{i}=W_{\tau_{i+1}}-W_{\tau_i}$ y $g_{:,j}$ es la $j$-ésima
+columna de $g$. Esta aproximación es fuertemente consistente de orden $\gamma = 1.0$, si los
+coeficientes son dos veces diferenciables y tales derivadas son uniformemente acotadas \cite{fuchsInferenceDiffusionProcesses2013}.
+Este esquema está implementado en \texttt{DifferentialEquations.jl} como \texttt{RKMil} y requiere de
+un tamaño de paso fijo.

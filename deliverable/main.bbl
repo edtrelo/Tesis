@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.2 $
+% $ biblatex bbl format version 3.3 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,8 +18,8 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global}
-    \entry{arnoldStochasticDifferentialEquations1974}{book}{}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{arnoldStochasticDifferentialEquations1974}{book}{}{}
       \name{author}{1}{}{%
         {{hash=ed1ef7a5355b5363c96c82ca41457f8a}{%
            family={Arnold},
@@ -35,10 +35,12 @@
       }
       \strng{namehash}{ed1ef7a5355b5363c96c82ca41457f8a}
       \strng{fullhash}{ed1ef7a5355b5363c96c82ca41457f8a}
+      \strng{fullhashraw}{ed1ef7a5355b5363c96c82ca41457f8a}
       \strng{bibnamehash}{ed1ef7a5355b5363c96c82ca41457f8a}
       \strng{authorbibnamehash}{ed1ef7a5355b5363c96c82ca41457f8a}
       \strng{authornamehash}{ed1ef7a5355b5363c96c82ca41457f8a}
       \strng{authorfullhash}{ed1ef7a5355b5363c96c82ca41457f8a}
+      \strng{authorfullhashraw}{ed1ef7a5355b5363c96c82ca41457f8a}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -55,7 +57,7 @@
       \endverb
       \keyw{Stochastic differential equations}
     \endentry
-    \entry{oksendalStochasticDifferentialEquations2003}{book}{}
+    \entry{oksendalStochasticDifferentialEquations2003}{book}{}{}
       \name{author}{1}{}{%
         {{hash=08c642070d573e8ec607ded1724116ab}{%
            family={Øksendal},
@@ -71,10 +73,12 @@
       }
       \strng{namehash}{08c642070d573e8ec607ded1724116ab}
       \strng{fullhash}{08c642070d573e8ec607ded1724116ab}
+      \strng{fullhashraw}{08c642070d573e8ec607ded1724116ab}
       \strng{bibnamehash}{08c642070d573e8ec607ded1724116ab}
       \strng{authorbibnamehash}{08c642070d573e8ec607ded1724116ab}
       \strng{authornamehash}{08c642070d573e8ec607ded1724116ab}
       \strng{authorfullhash}{08c642070d573e8ec607ded1724116ab}
+      \strng{authorfullhashraw}{08c642070d573e8ec607ded1724116ab}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -101,7 +105,7 @@
       \verb http://link.springer.com/10.1007/978-3-642-14394-6
       \endverb
     \endentry
-    \entry{maoStochasticDifferentialEquations2011}{book}{}
+    \entry{maoStochasticDifferentialEquations2011}{book}{}{}
       \name{author}{1}{}{%
         {{hash=3b63fe742f76c1fafd56bf6fa698114e}{%
            family={Mao},
@@ -117,10 +121,12 @@
       }
       \strng{namehash}{3b63fe742f76c1fafd56bf6fa698114e}
       \strng{fullhash}{3b63fe742f76c1fafd56bf6fa698114e}
+      \strng{fullhashraw}{3b63fe742f76c1fafd56bf6fa698114e}
       \strng{bibnamehash}{3b63fe742f76c1fafd56bf6fa698114e}
       \strng{authorbibnamehash}{3b63fe742f76c1fafd56bf6fa698114e}
       \strng{authornamehash}{3b63fe742f76c1fafd56bf6fa698114e}
       \strng{authorfullhash}{3b63fe742f76c1fafd56bf6fa698114e}
+      \strng{authorfullhashraw}{3b63fe742f76c1fafd56bf6fa698114e}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -137,7 +143,7 @@
       \verb /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Mao - 2011 - Stochastic differential equations and applications.pdf
       \endverb
     \endentry
-    \entry{rinconIntroduccionProcesosEstocasticos2012}{book}{}
+    \entry{rinconIntroduccionProcesosEstocasticos2012}{book}{}{}
       \name{author}{1}{}{%
         {{hash=97d6299d072611de6a8bb9a6a3ea8f2f}{%
            family={Rincón},
@@ -153,10 +159,12 @@
       }
       \strng{namehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{fullhash}{97d6299d072611de6a8bb9a6a3ea8f2f}
+      \strng{fullhashraw}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{bibnamehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{authorbibnamehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{authornamehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{authorfullhash}{97d6299d072611de6a8bb9a6a3ea8f2f}
+      \strng{authorfullhashraw}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \field{extraname}{1}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
@@ -173,7 +181,7 @@
       \verb http://lya.fciencias.unam.mx/lars/libros/Rinc%C3%B3n(2012)Procesos-estoc%C3%A1sticos.pdf
       \endverb
     \endentry
-    \entry{dobrowIntroductionStochasticProcesses2016}{book}{}
+    \entry{dobrowIntroductionStochasticProcesses2016}{book}{}{}
       \name{author}{1}{}{%
         {{hash=1bfe8a7c3859d8b6935d468cf77abc27}{%
            family={Dobrow},
@@ -189,10 +197,12 @@
       }
       \strng{namehash}{1bfe8a7c3859d8b6935d468cf77abc27}
       \strng{fullhash}{1bfe8a7c3859d8b6935d468cf77abc27}
+      \strng{fullhashraw}{1bfe8a7c3859d8b6935d468cf77abc27}
       \strng{bibnamehash}{1bfe8a7c3859d8b6935d468cf77abc27}
       \strng{authorbibnamehash}{1bfe8a7c3859d8b6935d468cf77abc27}
       \strng{authornamehash}{1bfe8a7c3859d8b6935d468cf77abc27}
       \strng{authorfullhash}{1bfe8a7c3859d8b6935d468cf77abc27}
+      \strng{authorfullhashraw}{1bfe8a7c3859d8b6935d468cf77abc27}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -211,7 +221,7 @@
       \verb /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Dobrow - 2016 - Introduction to stochastic processes with R.pdf
       \endverb
     \endentry
-    \entry{iacusSimulationInferenceStochastic2008}{book}{}
+    \entry{iacusSimulationInferenceStochastic2008}{book}{}{}
       \name{author}{1}{}{%
         {{hash=80f6b89b0f353da7c4219b00038f7dba}{%
            family={Iacus},
@@ -227,12 +237,14 @@
       }
       \strng{namehash}{80f6b89b0f353da7c4219b00038f7dba}
       \strng{fullhash}{80f6b89b0f353da7c4219b00038f7dba}
+      \strng{fullhashraw}{80f6b89b0f353da7c4219b00038f7dba}
       \strng{bibnamehash}{80f6b89b0f353da7c4219b00038f7dba}
       \strng{authorbibnamehash}{80f6b89b0f353da7c4219b00038f7dba}
       \strng{authornamehash}{80f6b89b0f353da7c4219b00038f7dba}
       \strng{authorfullhash}{80f6b89b0f353da7c4219b00038f7dba}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \strng{authorfullhashraw}{80f6b89b0f353da7c4219b00038f7dba}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{isbn}{978-0-387-75838-1}
@@ -247,7 +259,7 @@
       \verb /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Iacus - 2008 - Simulation and Inference for Stochastic Differential Equations With R Examples.pdf
       \endverb
     \endentry
-    \entry{fuchsInferenceDiffusionProcesses2013}{book}{}
+    \entry{fuchsInferenceDiffusionProcesses2013}{book}{}{}
       \name{author}{1}{}{%
         {{hash=fac0c31b5196d67532ad5044c9f16817}{%
            family={Fuchs},
@@ -263,12 +275,14 @@
       }
       \strng{namehash}{fac0c31b5196d67532ad5044c9f16817}
       \strng{fullhash}{fac0c31b5196d67532ad5044c9f16817}
+      \strng{fullhashraw}{fac0c31b5196d67532ad5044c9f16817}
       \strng{bibnamehash}{fac0c31b5196d67532ad5044c9f16817}
       \strng{authorbibnamehash}{fac0c31b5196d67532ad5044c9f16817}
       \strng{authornamehash}{fac0c31b5196d67532ad5044c9f16817}
       \strng{authorfullhash}{fac0c31b5196d67532ad5044c9f16817}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \strng{authorfullhashraw}{fac0c31b5196d67532ad5044c9f16817}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{isbn}{978-3-642-25969-2}
@@ -285,7 +299,7 @@
       \verb 10.1007/978-3-642-25969-2
       \endverb
       \verb{file}
-      \verb /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Fuchs - Inference for Diffusion Processes.pdf
+      \verb /home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Fuchs - Inference for Diffusion Processes.pdf
       \endverb
       \verb{urlraw}
       \verb https://link.springer.com/10.1007/978-3-642-25969-2
@@ -294,7 +308,7 @@
       \verb https://link.springer.com/10.1007/978-3-642-25969-2
       \endverb
     \endentry
-    \entry{billingsleyProbabilityMeasure1995}{book}{}
+    \entry{billingsleyProbabilityMeasure1995}{book}{}{}
       \name{author}{1}{}{%
         {{hash=1510894b195c898f61d6cbd12bfaf118}{%
            family={Billingsley},
@@ -310,12 +324,14 @@
       }
       \strng{namehash}{1510894b195c898f61d6cbd12bfaf118}
       \strng{fullhash}{1510894b195c898f61d6cbd12bfaf118}
+      \strng{fullhashraw}{1510894b195c898f61d6cbd12bfaf118}
       \strng{bibnamehash}{1510894b195c898f61d6cbd12bfaf118}
       \strng{authorbibnamehash}{1510894b195c898f61d6cbd12bfaf118}
       \strng{authornamehash}{1510894b195c898f61d6cbd12bfaf118}
       \strng{authorfullhash}{1510894b195c898f61d6cbd12bfaf118}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \strng{authorfullhashraw}{1510894b195c898f61d6cbd12bfaf118}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{3. ed}
@@ -330,7 +346,7 @@
       \verb /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Billingsley - Probability and Measure.pdf
       \endverb
     \endentry
-    \entry{rinconCursoIntermedioProbabilidad2007}{book}{}
+    \entry{rinconCursoIntermedioProbabilidad2007}{book}{}{}
       \name{author}{1}{}{%
         {{hash=97d6299d072611de6a8bb9a6a3ea8f2f}{%
            family={Rincón},
@@ -346,13 +362,15 @@
       }
       \strng{namehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{fullhash}{97d6299d072611de6a8bb9a6a3ea8f2f}
+      \strng{fullhashraw}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{bibnamehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{authorbibnamehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{authornamehash}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \strng{authorfullhash}{97d6299d072611de6a8bb9a6a3ea8f2f}
+      \strng{authorfullhashraw}{97d6299d072611de6a8bb9a6a3ea8f2f}
       \field{extraname}{2}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{annotation}{OCLC: 259722916}
@@ -368,7 +386,7 @@
       \verb http://lya.fciencias.unam.mx/lars/libros/Rinc%C3%B3n(2007)Curso-intermedio-de-probabilidad.pdf
       \endverb
     \endentry
-    \entry{rackauckasDifferentialEquationsjlPerformantFeatureRich2017a}{article}{}
+    \entry{rackauckasDifferentialEquationsjlPerformantFeatureRich2017a}{article}{}{}
       \name{author}{2}{}{%
         {{hash=c454e867cc51042dbb2c4a284006599f}{%
            family={Rackauckas},
@@ -383,12 +401,14 @@
       }
       \strng{namehash}{72532c9bb73703d2c2ce1424659b680f}
       \strng{fullhash}{72532c9bb73703d2c2ce1424659b680f}
+      \strng{fullhashraw}{72532c9bb73703d2c2ce1424659b680f}
       \strng{bibnamehash}{72532c9bb73703d2c2ce1424659b680f}
       \strng{authorbibnamehash}{72532c9bb73703d2c2ce1424659b680f}
       \strng{authornamehash}{72532c9bb73703d2c2ce1424659b680f}
       \strng{authorfullhash}{72532c9bb73703d2c2ce1424659b680f}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \strng{authorfullhashraw}{72532c9bb73703d2c2ce1424659b680f}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{DifferentialEquations.jl is a package for solving differential equations in Julia. It covers discrete equations (function maps, discrete stochastic (Gillespie/Markov) simulations), ordinary differential equations, stochastic differential equations, algebraic differential equations, delay differential equations, hybrid differential equations, jump diffusions, and (stochastic) partial differential equations. Through extensive use of multiple dispatch, metaprogramming, plot recipes, foreign function interfaces (FFI), and call-overloading, DifferentialEquations.jl offers a unified user interface to solve and analyze various forms of differential equations while not sacrificing features or performance. Many modern features are integrated into the solvers, such as allowing arbitrary user-defined number systems for high-precision and arithmetic with physical units, built-in multithreading and parallelism, and symbolic calculation of Jacobians. Integrated into the package is an algorithm testing and benchmarking suite to both ensure accuracy and serve as an easy way for researchers to develop and distribute their own methods. Together, these features build a highly extendable suite which is feature-rich and highly performant.Funding statement: This work was partially supported by NIH grants P50GM76516 and R01GM107264 and NSF grants DMS1562176 and DMS1161621. This material is based upon work supported by the National Science Foundation Graduate Research Fellowship under Grant No. DGE-1321846, the National Academies of Science, Engineering, and Medicine via the Ford Foundation, and the National Institutes of Health Award T32 EB009418. Its contents are solely the responsibility of the authors and do not necessarily represent the official views of the NIH.}
@@ -420,7 +440,7 @@
       \verb https://openresearchsoftware.metajnl.com/articles/10.5334/jors.151
       \endverb
     \endentry
-    \entry{kloedenNumericalSolutionStochastic1992}{book}{}
+    \entry{kloedenNumericalSolutionStochastic1992}{book}{}{}
       \name{author}{2}{}{%
         {{hash=7b32249850edcace60b1c231a0f5fb51}{%
            family={Kloeden},
@@ -441,15 +461,17 @@
       }
       \strng{namehash}{0183f9b6362d5aa8d2faeea78d274490}
       \strng{fullhash}{0183f9b6362d5aa8d2faeea78d274490}
+      \strng{fullhashraw}{0183f9b6362d5aa8d2faeea78d274490}
       \strng{bibnamehash}{0183f9b6362d5aa8d2faeea78d274490}
       \strng{authorbibnamehash}{0183f9b6362d5aa8d2faeea78d274490}
       \strng{authornamehash}{0183f9b6362d5aa8d2faeea78d274490}
       \strng{authorfullhash}{0183f9b6362d5aa8d2faeea78d274490}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \strng{authorfullhashraw}{0183f9b6362d5aa8d2faeea78d274490}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{978-3-642-08107-1 978-3-662-12616-5}
+      \field{isbn}{978-3-662-12616-5}
       \field{langid}{english}
       \field{title}{Numerical {{Solution}} of {{Stochastic Differential Equations}}}
       \field{urlday}{22}
@@ -462,7 +484,7 @@
       \verb 10.1007/978-3-662-12616-5
       \endverb
       \verb{file}
-      \verb /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Kloeden y Platen - 2010 - Numerical solution of stochastic differential equations.pdf
+      \verb /home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Kloeden y Platen - 2010 - Numerical solution of stochastic differential equations.pdf
       \endverb
       \verb{urlraw}
       \verb http://link.springer.com/10.1007/978-3-662-12616-5
@@ -471,7 +493,7 @@
       \verb http://link.springer.com/10.1007/978-3-662-12616-5
       \endverb
     \endentry
-    \entry{ozdemircalikusuFittingItoStochastic2021}{article}{}
+    \entry{ozdemircalikusuFittingItoStochastic2021}{article}{}{}
       \name{author}{2}{}{%
         {{hash=f4753032d8079add8e283802d55a5b4a}{%
            family={Özdemi̇r\bibnamedelima Çalikuşu},
@@ -486,10 +508,12 @@
       }
       \strng{namehash}{2df983fd9f47842af33fb42a7764c031}
       \strng{fullhash}{2df983fd9f47842af33fb42a7764c031}
+      \strng{fullhashraw}{2df983fd9f47842af33fb42a7764c031}
       \strng{bibnamehash}{2df983fd9f47842af33fb42a7764c031}
       \strng{authorbibnamehash}{2df983fd9f47842af33fb42a7764c031}
       \strng{authornamehash}{2df983fd9f47842af33fb42a7764c031}
       \strng{authorfullhash}{2df983fd9f47842af33fb42a7764c031}
+      \strng{authorfullhashraw}{2df983fd9f47842af33fb42a7764c031}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -524,7 +548,7 @@
       \verb http://dergipark.org.tr/en/doi/10.51354/mjen.929656
       \endverb
     \endentry
-    \entry{gourierouxSIRModelStochastic2020}{online}{}
+    \entry{gourierouxSIRModelStochastic2020}{online}{}{}
       \name{author}{2}{}{%
         {{hash=035e13ef3e198d1daf97f687c1d8519d}{%
            family={Gourieroux},
@@ -539,10 +563,12 @@
       }
       \strng{namehash}{8977130c1ea9b685bdede949c0488943}
       \strng{fullhash}{8977130c1ea9b685bdede949c0488943}
+      \strng{fullhashraw}{8977130c1ea9b685bdede949c0488943}
       \strng{bibnamehash}{8977130c1ea9b685bdede949c0488943}
       \strng{authorbibnamehash}{8977130c1ea9b685bdede949c0488943}
       \strng{authornamehash}{8977130c1ea9b685bdede949c0488943}
       \strng{authorfullhash}{8977130c1ea9b685bdede949c0488943}
+      \strng{authorfullhashraw}{8977130c1ea9b685bdede949c0488943}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -577,7 +603,7 @@
       \endverb
       \keyw{Quantitative Biology - Populations and Evolution,Statistics - Methodology}
     \endentry
-    \entry{aliStochasticModelingInfluenza2024}{article}{}
+    \entry{aliStochasticModelingInfluenza2024}{article}{}{}
       \name{author}{7}{}{%
         {{hash=fd871330174e19683d1e21714410cad7}{%
            family={Ali},
@@ -615,12 +641,14 @@
            given={Mohamed\bibnamedelima A.},
            giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
       }
-      \strng{namehash}{aafc0ece88c4bbec179cf2997f167b3e}
+      \strng{namehash}{073e9bc04ec97ecb936dc50e2f9408ed}
       \strng{fullhash}{960560a2764a5b7f6cbde3604021d410}
-      \strng{bibnamehash}{aafc0ece88c4bbec179cf2997f167b3e}
-      \strng{authorbibnamehash}{aafc0ece88c4bbec179cf2997f167b3e}
-      \strng{authornamehash}{aafc0ece88c4bbec179cf2997f167b3e}
+      \strng{fullhashraw}{960560a2764a5b7f6cbde3604021d410}
+      \strng{bibnamehash}{073e9bc04ec97ecb936dc50e2f9408ed}
+      \strng{authorbibnamehash}{073e9bc04ec97ecb936dc50e2f9408ed}
+      \strng{authornamehash}{073e9bc04ec97ecb936dc50e2f9408ed}
       \strng{authorfullhash}{960560a2764a5b7f6cbde3604021d410}
+      \strng{authorfullhashraw}{960560a2764a5b7f6cbde3604021d410}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}

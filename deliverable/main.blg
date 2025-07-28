@@ -1,16 +1,14 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is '/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Tesis/main.blg'
-[172] biber:340> INFO - === sáb jul  5, 2025, 18:00:15
-[203] Biber.pm:419> INFO - Reading '/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Tesis/main.bcf'
-[341] Biber.pm:979> INFO - Found 14 citekeys in bib section 0
-[364] Biber.pm:4419> INFO - Processing section 0
-[380] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
-[427] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1052] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[1357] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1358] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1358] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'es-ES'
-[1385] bbl.pm:660> INFO - Writing '/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Tesis/main.bbl' with encoding 'UTF-8'
-[1397] bbl.pm:763> INFO - Output to /home/edtrelo/Documentos/Universidad/Tesis/Entregables/Tesis/main.bbl
-[1397] Biber.pm:131> WARN - ISBN '978-3-642-08107-1 978-3-662-12616-5' in entry 'kloedenNumericalSolutionStochastic1992' is invalid - run biber with '--validate_datamodel' for details.
-[1397] Biber.pm:133> INFO - WARNINGS: 1
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is '/Users/edtrelo/Documents/Universidad/Tesis/deliverable/main.blg'
+[101] biber-darwin:340> INFO - === Sun Jul 27, 2025, 23:16:24
+[119] Biber.pm:420> INFO - Reading '/Users/edtrelo/Documents/Universidad/Tesis/deliverable/main.bcf'
+[259] Biber.pm:994> INFO - Found 14 citekeys in bib section 0
+[278] Biber.pm:4463> INFO - Processing section 0
+[291] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
+[324] bibtex.pm:1713> INFO - LaTeX decoding ...
+[950] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[1147] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1147] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1147] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'es-ES'
+[1163] bbl.pm:676> INFO - Writing '/Users/edtrelo/Documents/Universidad/Tesis/deliverable/main.bbl' with encoding 'UTF-8'
+[1174] bbl.pm:779> INFO - Output to /Users/edtrelo/Documents/Universidad/Tesis/deliverable/main.bbl
