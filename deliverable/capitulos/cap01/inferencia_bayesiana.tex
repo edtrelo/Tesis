@@ -50,13 +50,40 @@ Finalmente, al tiempo $t_0$, el estado inicial del sistema está sujeto a la dis
     \end{align}
 \end{definition}
 
-En la literatura, a \ref{eq:POMP} también se le conoce como \textit{state-space model} o \textit{hidden Markov model}.
+En la literatura, a \ref{eq:POMP} también se le conoce como \textit{state-space model} 
+o \textit{hidden Markov model}. Algunas de las aplicaciones de esta clase de modelos 
+pueden ser consulatadas en \cite{sarkkaBayesianFilteringSmoothing2023}, estas 
+abarcan los campos de la navegación, la ingeniería, telecomunicaciones, física y 
+otros más.
 
-\subsection{Filtrado}
+Dado un modelo de Markov parcialmente observado (eq. \ref{eq:POMP}), se ha desarrollado
+suficiente maquinaria teórica y algorítmica para realizar las siguientes tareas 
+\begin{enumerate}
+    \item El \textit{filtrado} consiste en obtener la distribución marginal del 
+    estado al tiempo actual usando la observación actual y aquellas 
+    obtenidas con anterioridad, es decir, se calcula 
+    $$p(X_k|Y_{1:k}),\quad k = 1,...,N$$
+    \item El \textit{suavizado} consiste en obtener la distribución marginal 
+    del estado en un tiempo anterior usando todas las observaciones acumuladas hasta 
+    el tiempo actual, es decir, se calcula 
+    $$p(X_k|Y_{1:N}),\quad j = 1,...,N-1$$
+    \item Para la \textit{predicción} se calcula la distribución marginal del estado 
+    en algún tiempo futuro, es decir, se obtiene 
+    $$p(X_{k+n}|Y_{1:k}),\quad k = 1,...,N,\quad n=1,2,...$$
+\end{enumerate}
 
-En general, buscamos estimar los estados ocultos del sistema $X_{0:N}$ dadas las observaciones $Y_{1:N}$. En teoría, la \textit{distribución a posteriori} de los estados está dada por el Teorema de Bayes,
-\begin{equation}
-    p(X_{0:N}|Y_{1:N}) = \frac{P(Y_{1:N}|X_{0:N})P(X_{0:N})}{P(Y_{1:N})}
-\end{equation}
+% En el filtrado (del inglés \textit{filtering}) se buscan estimar los estados ocultos del 
+% sistema $X_{0:N}$ dadas las observaciones $Y_{1:N}$. En teoría, la  \textit{distribución a posteriori} 
+% de los estados está dada por el Teorema de Bayes y es
+% \begin{equation}\label{eq:filtrado01}
+%     p(X_{0:N}|Y_{1:N}) = \frac{P(Y_{1:N}|X_{0:N})P(X_{0:N})}{P(Y_{1:N})}
+% \end{equation}
+% Sin embargo, \textcite{sarkkaBayesianFilteringSmoothing2023} explican que esta formulación 
+% genera dos problemas para su implementación. Primero, cada que se recolecte una 
+% nueva observación se tiene que volver a realizar el cálculo de la distribución
+% posterior. Luego, mientras más observaciones se tengan a la mano, la dimensión de la integral 
+% que define al denominador de la ecuación \ref{eq:filtrado01} incrementa y se vuelve 
+% compleja su evaluación.
+
 
 

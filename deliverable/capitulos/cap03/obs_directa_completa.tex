@@ -36,6 +36,9 @@ Y_{t_i}-f_i\Delta_i)(g_ig_i^T)^{-1}(Y_{t_{i+1}}-
 Y_{t_i}-f_i\Delta_i)^T \right)}{\sqrt{2\pi 
 \Delta t_i \det(g_ig_i^T)}}$$
 
+donde se han definido $f_i:=f_\theta(Y_{t_i},t_i)$ y 
+$g_i:=g_\theta(Y_{t_i},t_i)$.
+
 % Este método de inferencia es compatible para el escenario donde 
 % se tiene acceso las observaciones de $X_t$. En el contexto 
 % epidemiológico, los datos a los que se tiene acceso en la 
@@ -44,3 +47,7 @@ Y_{t_i}-f_i\Delta_i)^T \right)}{\sqrt{2\pi
 % tenemos acceso a $Z_{t_i} = X_{t_{i+1}}-X_{t_i}$. De \ref{eq:EM_cap311}
 % se sigue que 
 % $$Z_i \sim N_d(f(Y_{}))$$
+
+\subsection{Verosimilitud simulada}
+
+

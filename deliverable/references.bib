@@ -16,7 +16,7 @@
   urldate = {2025-06-23},
   abstract = {The sequential estimation of the states (filtering) and the corresponding simultaneous estimation of the states and fixed parameters of a dynamic state-space model, being linear or not, is an important probleminmany fields of research, such as in the area of finance.  The main objective of this research is to estimate sequ entially and efficiently –from a Bayesian perspective via the particle filtering methodology– the states and/or the fixed parameters of a nonstandard dynamic state-spacemodel: one that is possibly nonlinear, non-stationary or non-Gaussian.  The present thesis consists of seven chapters and is structured into two parts. Chapter 1 introduces basic concepts, themotivation, the purpose, and the outline of the thesis. Chapters 2-4, the first part of the thesis, focus on the estimation of the states. Chapter 2 provides a comprehensive review of themost classic algorithms (non-simulation based: KF, EKF, and UKF; and simulation based: SIS, SIR, ASIR, EPF, and UPF1) used for filtering solely the states of a dynamic statespacemodel. All these filters scattered in the literature are not only described in detail, but also placed  in a unified notation for the sake of consistency, readability and comparability. Chapters 3 and 4 confirm the efficiency of the well-established particle filtering methodology, via extensive Monte Carlo (MC) studies, when estimating only the latent states for a dynamic state-space model, being linear or not. Also, complementary MC studies are conducted to analyze some relevant issues within the adopted approach, such as the degeneracy problem, the resampling strategy, or the possible impact on estimation of the number of particles used and the time series length.  Chapter 3 specifically illustrates the performance of the particle filtering methodology in a linear and Gaussian context, using the exact Kalman filter as a benchmark. The performance of the four studied particle filter variants (SIR, SIRopt, ASIR, KPF, the latter being a special case of the EPF algorithm) is assessed using two apparently simple, but important time series processes: the so-called Local Level Model (LLM) and the AR(1) plus noise model, which are non-stationary and stationary, respectively. An exhaustive study on the effect of the signal-to-noise ratio (SNR) over the quality of the estimation is additionally performed. ComplementaryMC studies are conducted to assess the degree of degeneracy and the possible effect of increasing the number of particles and the time series length. Chapter 4 assesses and illustrates the performance of the particle filtering methodology in a nonlinear context. Specifically, a synthetic nonlinear, non Gaussian and non-stationary state space model taken from literature is used to illustrate the performance of the four competing particle filters under study (SIR, ASIR, EPF, UPF) in contraposition to two well-known non-simulation based filters (EKF, UKF). In this chapter, the residual and stratified resampling schemes are compared and the effect of increasing the number of particles is addressed.  In the second part (Chapters 5 and 6), extensive MC studies are carried out, but the main goal is the simultaneous estimation of states and fixed model parameters for chosen non-standard dynamic models. This area of research is still very active and it is within this area where this thesis contributes themost. Chapter 5 provides a partial survey of particle filter variants used to conduct the simultaneous estimation of states and fixed parameters. Such filters are an extension of those previously adopted for estimating solely the states. Additionally, a MC study is carried out to estimate the state (level) and the two fixed variance parameters of the non-stationary local level model; we use four particle filter variants (LW, SIRJ, SIRoptJ, KPFJ), six typical settings of the SNR and two settings for the discount factor needed in the jittering step. In this chapter, the SIRJ particle filter variant is proposed as an alternative to the well-established filter of Liu West (LW PF). The combined use of a Kalman-based proposal distribution and a jittering step is proposed and explored, which gives rise to the particle filter variant called: the Kalman Particle Filter plus Jittering (KPFJ). Chapter 6 focuses on estimating the states and three fixed parameters of the non-standard basic stochastic volatility model known as stochastic autoregressive volatility model of order one: SARV(1). After an introduction and detailed description of the stylized features of financial  time series, the estimation ability of two competing particle filter variants (SIRJ vs LW(Liu andWest)) is shown empirically using simulated data. The chapter ends with an application to real data sets from the financial area: the Spanish IBEX 35 returns index and the Europe Brent Spot prices (in dollars).  The contribution in chapters 5 and 6 is to propose new variants of particle filters, such as the KPFJ, the SIRJ, and the SIRoptJ (a special case of the SIRJ that uses an optimal proposal distribution) that have developed along this work. The thesis also suggests that the so-called EPFJ (Extended Particle Filter with Jittering) and the UPFJ (Unscented Particle Filter with Jittering) algorithms could be reasonable choices when dealingwith highly nonlinearmodels. In this part, also relevant issueswithin the particle filteringmethodology are discussed, such as the potential impact on estimation of the discount factor parameter, the time series length, and the number of particles used.  Throughout this work, pseudo-codes are written for all filters studied and are implemented in RLanguage. The reported findings are obtained as the result of extensive MC studies, considering a variety of case-scenarios described in the thesis. The intrinsic characteristics of the model at hand  guided -according to suitability– the choice of filters in each specific situation. The comparison of filters is based on the RMSE, the elapsed CPU-time and the degree of degeneracy.   Finally, Chapter 7 includes the discussion, contributions, and future lines of research. Some complementary theoretical and practical aspects are presented in the appendix.           L’estimació seqüencial dels estats (filtratge) i la corresponent estimació simultània dels estats i els paràmetres fixos d’unmodel dinàmic formulat en forma d’espai d’estat –sigui lineal o no– constitueix un problema de rellevada importància enmolts camps, com ser a l’àrea de finances.  L’objectiu principal d’aquesta tesi és el d’estimar seqüencialment i de manera eficient –des d’un punt de vista bayesià i usant lametodologia de filtratge de partícules– els estats i/o els paràmetres fixos d’unmodel d’espai d’estat dinàmic no estàndard: possiblement no lineal, no gaussià o no estacionari. El present treball consisteix de 7 capítols i s’organitza en dues parts. El Capítol 1 hi introdueix conceptes bàsics, lamotivació, el propòsit i l’estructura de la tesi.  La primera part d’aquesta tesi (capítols 2 a 4) se centra únicament en l’estimació dels estats. El Capítol 2 presenta una revisió exhaustiva dels algorismes més clàssics no basats en simulacions (KF, EKF, UKF2) i els basats en simulacions (SIS, SIR, ASIR, EPF, UPF). Per a aquests filtres, tots esmentats en la literatura, amés de descriure’ls detalladament, s’ha unificat la notació amb l’objectiu que aquesta sigui consistent i comparable entre els diferents algorismes implementats al llarg d’aquest treball. Els capítols 3 i 4 se centren en la realització d’estudis Monte Carlo (MC) extensos que confirmen l’eficiència de la metodologia de filtratge de partícules per estimar els estats latents d’un procés dinàmic formulat en forma d’espai d’estat, sigui lineal o no. Alguns estudis MC complementaris es duen a terme per avaluar diferents aspectes de la  metodologia de filtratge de partícules, com ser el problema de la degeneració, l’elecció de l’estratègia de remostreig, el nombre de partícules usades o la grandària de la sèrie temporal.  Específicament, el Capítol 3 il·lustra el comportament de la metodologia de filtratge de partícules en un context lineal i gaussià en comparació de l’òptim i exacte filtre de Kalman. La capacitat de filtratge de les quatre variants de filtre de partícules estudiades (SIR, SIRopt, ASIR, KPF;  l’últim sent un cas especial de l’algorisme EPF) es va avaluar sobre la base de dos processos de sèries temporals aparentment simples però importants: els anomenats Local Level Model (LLM) i el AR (1) plus noise, que són no estacionari i estacionari, respectivament. Aquest capítol estudia en profunditat temes rellevants dins de l’enfocament adoptat, coml’impacte en l’estimació de la relació entre el senyal i el soroll (SNR: signal-to-noise-ratio, en aquesta tesi), de la longitud de la sèrie temporal i del nombre de partícules. El Capítol 4 avalua i il·lustra el comportament de la metodologia de filtratge de partícules en un context no lineal. En concret, s’utilitza un model d’espai d’estat no lineal, no gaussià i no estacionari pres de la literatura per il·lustrar el comportament de quatre filtres de partícules (SIR, ASIR, EPF, UPF) en contraposició a dos filtres no basats en simulació ben coneguts (EKF, UKF). Aquí es comparen els esquemes de remostreig residual i estratificat i s’avalua l’efecte d’augmentar el nombre de partícules.  A la segona part (capítols 5 i 6), es duen a terme també estudis MC extensos, però ara l’objectiu principal és l’estimació simultània dels estats i paràmetres fixos de certsmodels seleccionats. Aquesta àrea de recerca segueix sentmolt activa i és on aquesta tesi hi contribueixmés. El Capítol 5 proveeix una revisió parcial dels mètodes per dur a terme l’estimació simultània dels estats i paràmetres fixos a través de la metodologia de filtratge de partícules. Aquests filtres són una extensió d’aquells adoptats anteriorment només per estimar els estats. Aquí es realitza un estudi MC  per estimar l’estat (nivell) i els dos paràmetres de variància del model LLM no estacionari; s’utilitzen quatre variants (LW, SIRJ, SIRoptJ, KPFJ) de filtre de partícules, sis escenaris típics del SNR i dos escenaris per a l’anomenat factor de descompte necessari en el pas de diversificació. En aquest capítol, es proposa la variant de filtre de partícules SIRJ (Sample Importance Resampling with Jittering) com a alternativa al filtre de referència de Liu iWest (LWPF). També es proposa i explora l’ús combinat d’una distribució d’importància basada en el filtre de Kalman i un pas de diversificació (jittering) que dóna lloc a la variant del filtre de partícules anomenada Kalman Particle Filteringwith Jittering (KPFJ). El Capítol 6 se centra en l’estimació dels estats i dels paràmetres fixos delmodel bàsic no estàndard de volatilitat estocàstica denominat Stochastic autoregressive model of order one: SARV (1). Després d’una introducció i descripció detallada de les característiques pròpies de sèries temporals financeres, es demostra mitjançant estudis MC la capacitat d’estimació de dues variants de filtre de partícules (SIRJ vs. LW(Liu iWest)) utilitzant dades simulades. El capítol acaba amb una aplicació a dos conjunts de dades reals dins de l’àrea financera: l’índex de rendiments espanyol IBEX 35 i els preus al comptat (en dòlars) del Brent europeu. La contribució en els capítols 5 i 6 consisteix en proposar noves variants de filtres de partícules, compoden ser el KPFJ, el SIRJ i el SIRoptJ (un cas especial de l’algorisme SIRJ utilitzant una distribució d’importància òptima) que s’han desenvolupat al llarg d’aquest treball. També se suggereix que els anomenats filtres de partícules EPFJ (Extended Particle Filter with Jittering) i UPFJ (Unscented Particle Filter with Jittering) podrien ser opcions raonables quan es tracta de models altament no lineals; el KPFJ sent un cas especial de l’algorisme EPFJ. En aquesta part, també es tracten aspectes rellevants dins de la metodologia de filtratge de partícules, com ser l’impacte potencial en l’estimació de la longitud de la sèrie temporal, el paràmetre de factor de descompte i el nombre de partícules.  Al llarg d’aquest treball s’han escrit (i implementat en el llenguatge R) els pseudo-codis per a tots els filtres estudiats. Els resultats presentats s’obtenenmitjançant simulacionsMonte Carlo (MC) extenses, tenint en compte variats escenaris descrits en la tesi. Les característiques intrínseques del model baix estudi van guiar l’elecció dels filtres a comparar en cada situació específica. Amés, la comparació dels filtres es basa en el RMSE (RootMean Square Error), el temps de CPU i el grau de degeneració.   Finalment, el Capítol 7 presenta la discussió, les contribucions i les línies futures de recerca. Alguns aspectes teòrics i pràctics complementaris es presenten en els apèndixs.           La estimación secuencial de los estados (filtrado) y la correspondiente estimación simultánea de los estados y los parámetros fijos de un modelo dinámico formulado en forma de espacio de estado –sea lineal o no– constituye un problema de relevada importancia enmuchos campos, como ser en el área de finanzas.  El objetivo principal de esta tesis es el de estimar secuencialmente y de manera eficiente –desde un punto de vista bayesiano y usando la metodología de filtrado de partículas– los estados y/o los parámetros fijos de un modelo de espacio de estado dinámico no estándar: posiblemente no lineal, no gaussiano o no estacionario. El presente trabajo consta de 7 capítulos y se organiza en dos partes. El Capítulo 1 introduce conceptos básicos, la motivación, el propósito y la estructura de la tesis.   La primera parte de esta tesis (capítulos 2 a 4) se centra únicamente en la estimación de los estados. El Capítulo 2 presenta una revisión exhaustiva de los algoritmos más clásicos no basados en simulaciones (KF, EKF,UKF3) y los basados en simulaciones (SIS, SIR, ASIR, EPF, UPF). Para todos estos filtros, mencionados en la literatura, además de describirlos en detalle, se ha unificado la notación con el objetivo  de que ésta sea consistente y comparable entre los diferentes algoritmos implementados a lo largo de este trabajo. Los capítulos 3 y 4 se centran en la realización de estudios Monte Carlo (MC) extensos que confirman la eficiencia de la metodología de filtrado de partículas para estimar los estados latentes de un proceso dinámico formulado en forma de espacio de estado, sea lineal o no. Algunos estudios MC complementarios se llevan a cabo para evaluar varios aspectos de la metodología de filtrado de partículas, como ser el problema de la degeneración, la elección de la estrategia de remuestreo, el número de partículas usadas o el tamaño de la serie temporal. Específicamente, el Capítulo 3 ilustra el comportamiento de lametodología de filtrado de partículas en un contexto lineal y gaussiano en comparación con el óptimo y exacto filtro de Kalman. La capacidad de filtrado de las cuatro variantes de filtro de partículas estudiadas (SIR, SIRopt, ASIR, KPF; el último siendo un caso especial del algoritmo EPF) se evaluó en base a dos procesos de series temporales aparentemente simples pero importantes: los denominados Local Level Model (LLM) y el AR (1) plus noise, que son no estacionario y estacionario, respectivamente. Este capítulo estudia en profundidad  temas relevantes dentro del enfoque adoptado, como el impacto en la estimación de la relación entre la señal y el ruido (SNR: signal-to-noise-ratio, en esta tesis), de la longitud de la serie temporal y del número de partículas. El Capítulo 4 evalúa e ilustra el comportamiento de la metodología de filtrado de partículas en un contexto no lineal. En concreto, se utiliza un modelo de espacio de estado no lineal, no gaussiano y no estacionario tomado de la literatura para ilustrar el comportamiento de cuatro filtros de partículas (SIR, ASIR, EPF, UPF) en contraposición a dos filtros no basados en simulación bien conocidos (EKF, UKF). Aquí se comparan los esquemas de remuestreo residual y estratificado y se evalúa el efecto de  aumentar el número de partículas.  En la segunda parte (capítulos 5 y 6), se llevan a cabo también estudios MC extensos, pero ahora el objetivo principal es la estimación simultánea de los estados y parámetros fijos de ciertos modelos seleccionados. Esta área de investigación sigue siendo muy activa y es donde esta tesis contribuye más. El Capítulo 5 provee una revisión parcial de losmétodos para llevar a cabo la estimación simultánea de los estados y parámetros fijos a través de lametodología de filtrado de partículas. Dichos filtros son una extensión de aquellos adoptados anteriormente sólo para estimar los estados. Aquí se realiza un estudio MC para estimar el estado (nivel) y los dos parámetros de varianza del modelo LLM no estacionario; se utilizan cuatro variantes (LW, SIRJ, SIRoptJ, KPFJ) de filtro de partículas, seis escenarios típicos del SNR y dos escenarios para el llamado factor de descuento necesario en el paso de diversificación. En este capítulo, se propone la variante de filtro de partículas SIRJ (Sample Importance  resampling with Jittering) como alternativa al filtro de referencia de Liu y West (LW PF). También se propone y explora el uso combinado de una distribución de importancia basada en el filtro de Kalman y un paso de diversificación (jittering) que da lugar a la variante del filtro de partículas denominada Kalman Particle Filteringwith Jittering (KPFJ). El Capítulo 6 se centra en la estimación de los estados y de los parámetros fijos del modelo básico no estándar de volatilidad estocástica denominado Stochastic autoregressivemodel of order one: SARV (1). Después de una introducción y descripción detallada de las características propias de series temporales financieras, se demuestra mediante estudios MC la capacidad de estimación de dos variantes de filtro de partículas (SIRJ vs. LW (Liu y West)) utilizando datos simulados. El capítulo termina con  una aplicación a dos conjuntos de datos reales dentro del área financiera: el índice de rendimientos español IBEX 35 y los precios al contado (en dólares) del Brent europeo. La contribución en los capítulos 5 y 6 consiste en proponer nuevas variantes de filtros de partículas, como pueden ser el KPFJ, el SIRJ y el SIRoptJ (Caso especial del algoritmo SIRJ utilizando una distribución de importancia óptima) que se han desarrollado a lo largo de este trabajo. También se sugiere que los llamados filtros de partículas EPFJ (Extended Particle Filter with Jittering) y UPFJ (Unscented  Particle Filter with Jittering) podrían ser opciones razonables cuando se trata de modelos altamente no lineales; el KPFJ siendo un caso especial del algoritmo EPFJ. En esta parte, también se tratan aspectos relevantes dentro de lametodología de filtrado de partículas, como ser el impacto potencial en la estimación de la longitud de la serie temporal, el parámetro de factor de descuento y el número de partículas.  A lo largo de este trabajo se han escrito (e implementado en el lenguaje R) los pseudo-códigos para todos los filtros estudiados. Los resultados presentados se obtienen mediante simulaciones Monte Carlo (MC) extensas, teniendo en cuenta variados escenarios descritos en la tesis. Las características intrínsecas del modelo bajo estudio guiaron la elección de los filtros a comparar en cada situación específica. Además, la comparación de los filtros se basa en el RMSE (Root Mean Square Error), el tiempo de CPU y el grado de degeneración.  Finalmente, el Capítulo 7 presenta la discusión, las contribuciones y las líneas futuras de investigación. Algunos aspectos teóricos y prácticos complementarios se presentan en los apéndices.},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Acosta - Particle Filtering Estimation for Linear and Nonlinear State-Space Models.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Acosta - Particle Filtering Estimation for Linear and Nonlinear State-Space Models.pdf}
 }
 
 @article{ait-sahaliaMaximumLikelihoodEstimation2007,
@@ -33,7 +33,7 @@
   url = {https://linkinghub.elsevier.com/retrieve/pii/S0304405X06001395},
   urldate = {2025-06-15},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Aït-Sahalia y Kimmel - 2007 - Maximum likelihood estimation of stochastic volatility models.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Aït-Sahalia y Kimmel - 2007 - Maximum likelihood estimation of stochastic volatility models.pdf}
 }
 
 @article{alcarazModelingControlStrategies2012,
@@ -41,7 +41,7 @@
   author = {Alcaraz, G Gomez and Vargas-De-Leon, C},
   date = {2012},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/ALcaraz - Modeling control strategies for influenza A H1N1 epidemics.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/ALcaraz - Modeling control strategies for influenza A H1N1 epidemics.pdf}
 }
 
 @article{aliStochasticModelingInfluenza2024,
@@ -58,7 +58,7 @@
   url = {https://linkinghub.elsevier.com/retrieve/pii/S2666818124002729},
   urldate = {2025-06-15},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Ali et al. - 2024 - Stochastic modeling of influenza transmission Insights into disease dynamics and epidemic managemen.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Ali et al. - 2024 - Stochastic modeling of influenza transmission Insights into disease dynamics and epidemic managemen.pdf}
 }
 
 @book{allenModelingItoStochastic2007,
@@ -75,7 +75,7 @@
   isbn = {978-1-4020-5952-0 978-1-4020-5953-7},
   langid = {english},
   pagetotal = {1},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Allen - 2007 - Modeling with Itô Stochastic Differential Equations.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Allen - 2007 - Modeling with Itô Stochastic Differential Equations.pdf}
 }
 
 @article{allenPrimerStochasticEpidemic2017,
@@ -94,7 +94,23 @@
   urldate = {2025-06-13},
   langid = {english},
   keywords = {Epidemiology,Stochastic epidemiological models},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Allen - 2017 - A primer on stochastic epidemic models Formulation, numerical simulation, and analysis.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Allen - 2017 - A primer on stochastic epidemic models Formulation, numerical simulation, and analysis.pdf}
+}
+
+@online{alvarezEstimatingActiveCases2021,
+  title = {Estimating {{Active Cases}} of {{COVID-19}}},
+  author = {Álvarez, Javier and Baquero, Carlos and Cabana, Elisa and Champati, Jaya Prakash and Anta, Antonio Fernández and Frey, Davide and García-Agúndez, Augusto and Georgiou, Chryssis and Goessens, Mathieu and Hernández, Harold and Lillo, Rosa and Menezes, Raquel and Moreno, Raúl and Nicolaou, Nicolas and Ojo, Oluwasegun and Ortega, Antonio and Rufino, Jesús and Stavrakis, Efstathios and Jeevan, Govind and Glorioso, Christin},
+  date = {2021-08-06},
+  eprint = {2108.03284},
+  eprinttype = {arXiv},
+  eprintclass = {physics},
+  doi = {10.48550/arXiv.2108.03284},
+  url = {http://arxiv.org/abs/2108.03284},
+  urldate = {2025-07-10},
+  abstract = {Having accurate and timely data on confirmed active COVID-19 cases is challenging, since it depends on testing capacity and the availability of an appropriate infrastructure to perform tests and aggregate their results. In this paper, we propose methods to estimate the number of active cases of COVID-19 from the official data (of confirmed cases and fatalities) and from survey data. We show that the latter is a viable option in countries with reduced testing capacity or suboptimal infrastructures.},
+  pubstate = {prepublished},
+  keywords = {Computer Science - Distributed Parallel and Cluster Computing,Physics - Physics and Society,Statistics - Computation},
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Álvarez - Estimating Active Cases of COVID-19.pdf}
 }
 
 @book{andersonPopulationDynamicsInfectious1982,
@@ -108,7 +124,7 @@
   langid = {english},
   pagetotal = {1},
   keywords = {Epidemiological models,Epidemiology},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Anderson - 1982 - The Population Dynamics of Infectious Diseases.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Anderson - 1982 - The Population Dynamics of Infectious Diseases.pdf}
 }
 
 @book{anderssonStochasticEpidemicModels2000,
@@ -125,7 +141,7 @@
   langid = {english},
   pagetotal = {156},
   keywords = {Stochastic epidemiological models},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Andersson y Britton - 2000 - Stochastic Epidemic Models and Their Statistical Analysis.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Andersson y Britton - 2000 - Stochastic Epidemic Models and Their Statistical Analysis.pdf}
 }
 
 @inproceedings{andrieuOnLineParameterEstimation2005,
@@ -143,7 +159,7 @@
   eventtitle = {44th {{IEEE Conference}} on {{Decision}} and {{Control}}},
   isbn = {978-0-7803-9567-1},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/andrieu_doucet_tadic_onlineparameterestimationCDC2005.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/andrieu_doucet_tadic_onlineparameterestimationCDC2005.pdf}
 }
 
 @incollection{andrieuParticleMarkovChain2009,
@@ -161,7 +177,7 @@
   abstract = {Markov Chain Monte Carlo (MCMC) and sequential Monte Carlo (SMC) methods are the two most popular classes of algorithms used to sample from general high-dimensional probability distributions. The theoretical convergence of MCMC algorithms is ensured under weak assumptions, but their practical performance is notoriously unsatisfactory when the proposal distributions used to explore the space are poorly chosen and/or if highly correlated variables are updated independently. We show here how it is possible to systematically design potentially very efficient high-dimensional proposal distributions for MCMC by using SMC techniques. We demonstrate how this novel approach allows us to design effective MCMC algorithms in complex scenarios. This is illustrated by a problem of Bayesian inference for a stochastic kinetic model.},
   isbn = {978-3-642-04106-8 978-3-642-04107-5},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/andrieu_doucet_holenstein_pmcmc_mcqmc.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/andrieu_doucet_holenstein_pmcmc_mcqmc.pdf}
 }
 
 @article{andrieuParticleMarkovChain2010,
@@ -179,7 +195,7 @@
   abstract = {Summary             Markov chain Monte Carlo and sequential Monte Carlo methods have emerged as the two main tools to sample from high dimensional probability distributions. Although asymptotic convergence of Markov chain Monte Carlo algorithms is ensured under weak assumptions, the performance of these algorithms is unreliable when the proposal distributions that are used to explore the space are poorly chosen and/or if highly correlated variables are updated independently. We show here how it is possible to build efficient high dimensional proposal distributions by using sequential Monte Carlo methods. This allows us not only to improve over standard Markov chain Monte Carlo schemes but also to make Bayesian inference feasible for a large class of statistical models where this was not previously so. We demonstrate these algorithms on a non-linear state space model and a Lévy-driven stochastic volatility model.},
   langid = {english},
   keywords = {Hidden Markov models,MCMC,Particle filtering,PMCMC,POMPs},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Andrieu et al. - 2010 - Particle Markov Chain Monte Carlo methods.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Andrieu et al. - 2010 - Particle Markov Chain Monte Carlo methods.pdf}
 }
 
 @book{arnoldStochasticDifferentialEquations1974,
@@ -216,7 +232,7 @@
   abstract = {Estimating and quantifying uncertainty in unknown system parameters from limited data remains a challenging inverse problem in a variety of real-world applications. While many approaches focus on estimating constant parameters, a subset of these problems includes time-varying parameters with unknown evolution models that often cannot be directly observed. This work develops a systematic particle filtering approach that reframes the idea behind artificial parameter evolution to estimate time-varying parameters in nonstationary inverse problems arising from deterministic dynamical systems. Focusing on systems modeled by ordinary differential equations, we present two particle filter algorithms for time-varying parameter estimation: one that relies on a fixed value for the noise variance of a parameter random walk; another that employs online estimation of the parameter evolution noise variance along with the time-varying parameter of interest. Several computed examples demonstrate the capability of the proposed algorithms in estimating time-varying parameters with different underlying functional forms and different relationships with the system states (i.e., additive vs. multiplicative).},
   langid = {english},
   keywords = {Mathematics - Dynamical Systems,Statistics - Computation,Statistics - Methodology},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Arnold, A. - Particle filtering for time-varying parameter estimation in deterministic dynamical systems.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Arnold, A. - Particle filtering for time-varying parameter estimation in deterministic dynamical systems.pdf}
 }
 
 @article{arulampalamTutorialParticleFilters,
@@ -243,6 +259,18 @@
   abstract = {Severe acute respiratory syndrome coronavirus-2 (SARS-CoV-2) has been responsible for the initiation of the global pandemic since 2020. The virus spreads through contaminated air particles, fomite, and surface-contaminated porous (i.e., paper, wood, and masks) and non-porous (i.e., plastic, stainless steel, and glass) materials. The persistence of viruses on materials depends on porosity, adsorption, evaporation, isoelectric point, and environmental conditions, such as temperature, pH, and relative humidity. Disinfection techniques are crucial for preventing viral contamination on animated and inanimate surfaces. Currently, there are few effective methodologies for preventing SARS-CoV-2 and other coronaviruses without any side effects. Before infection can occur, measures must be taken to prevent the persistence of the coronavirus on the surfaces of both porous and non-porous inanimate materials. This review focuses on coronavirus persistence in surface materials (inanimate) and control measures. Viruses are inactivated through chemical and physical methods; the chemical methods particularly include alcohol, chlorine, and peroxide, whereas temperature, pH, humidity, ultraviolet irradiation (UV), gamma radiation, X-rays, ozone, and non-thermal, plasmagenerated reactive oxygen and nitrogen species (RONS) are physical methods.},
   langid = {english},
   file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Ashokkumar, S., et. al. - Persistence of Coronavirus on Surface Materials and Its Control Measures Using Nonthermal Plasma and Other Agents.pdf}
+}
+
+@online{baldeFittingSIRModel2020,
+  title = {Fitting {{SIR}} Model to {{COVID-19}} Pandemic Data and Comparative Forecasting with Machine Learning},
+  author = {Baldé, Mouhamadou A.M.T.},
+  date = {2020-05-01},
+  eprinttype = {Cold Spring Harbor Laboratory},
+  doi = {10.1101/2020.04.26.20081042},
+  url = {http://medrxiv.org/lookup/doi/10.1101/2020.04.26.20081042},
+  urldate = {2025-07-10},
+  abstract = {AbstractIn this work, we use a classical SIR model to study COVID-19 pandemic. We aim, to deal with the SIR model fitting to COVID-19 data by using different technics and tools. We particularly use two ways: the first one start by fitting the total number of the confirmed cases and the second use a parametric solver tool. Finally a comparative forecasting, machine learning tools, is given.},
+  pubstate = {prepublished}
 }
 
 @article{baltazar-lariosInferenciaEstadisticaPara,
@@ -667,6 +695,20 @@
   abstract = {It is now over a decade since the pioneering contribution of Gordon et al. (1993), which is commonly regarded as the first instance of modern sequential Monte Carlo (SMC) approaches. Initially focussed on applications to tracking and vision, these techniques are now very widespread and have had a significant impact in virtually all areas of signal and image processing concerned with Bayesian dynamical models. This article is intended to serve both as an introduction to SMC algorithms for non-specialists and as a reference to recent contributions in domains where the techniques are still under significant development, including smoothing, estimation of fixed parameters and use of SMC methods beyond the standard filtering contexts.},
   langid = {english},
   file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Cappé, O. - An overview of existing methods and recent advances in sequential Monte Carlo.pdf}
+}
+
+@article{chaeEstimationInfectionRate2020,
+  title = {Estimation of {{Infection Rate}} and {{Predictions}} of {{Disease Spreading Based}} on {{Initial Individuals Infected With COVID-19}}},
+  author = {Chae, Seo Yoon and Lee, KyoungEun and Lee, Hyun Min and Jung, Nam and Le, Quang Anh and Mafwele, Biseko Juma and Lee, Tae Ho and Kim, Doo Hwan and Lee, Jae Woo},
+  date = {2020-08-14},
+  journaltitle = {Frontiers in Physics},
+  shortjournal = {Front. Phys.},
+  volume = {8},
+  publisher = {Frontiers Media SA},
+  issn = {2296-424X},
+  doi = {10.3389/fphy.2020.00311},
+  url = {https://www.frontiersin.org/article/10.3389/fphy.2020.00311/full},
+  urldate = {2025-07-10}
 }
 
 @article{chauEfficientMethodSimulate2024,
@@ -1267,6 +1309,24 @@
   file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Fintzi - Efficient Data Augmentation for Fitting Stochastic Epidemic Models to Prevalence Data.pdf}
 }
 
+@article{fismanIDEAShortTerm2013,
+  title = {An {{IDEA}} for {{Short Term Outbreak Projection}}: {{Nearcasting Using}} the {{Basic Reproduction Number}}},
+  shorttitle = {An {{IDEA}} for {{Short Term Outbreak Projection}}},
+  author = {Fisman, David N. and Hauck, Tanya S. and Tuite, Ashleigh R. and Greer, Amy L.},
+  editor = {Vespignani, Alessandro},
+  date = {2013-12-31},
+  journaltitle = {PLoS ONE},
+  volume = {8},
+  number = {12},
+  pages = {e83622},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0083622},
+  url = {https://dx.plos.org/10.1371/journal.pone.0083622},
+  urldate = {2025-07-10},
+  langid = {english}
+}
+
 @book{flintPrinciplesVirologyPathogenesis2009,
   title = {Principles of Virology: Pathogenesis and Control},
   shorttitle = {Principles of Virology},
@@ -1306,7 +1366,7 @@
   urldate = {2025-06-23},
   isbn = {978-3-642-25969-2},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Fuchs - Inference for Diffusion Processes.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Fuchs - Inference for Diffusion Processes.pdf}
 }
 
 @article{funkRealtimeForecastingInfectious2018,
@@ -1995,7 +2055,7 @@
   url = {http://www.jstatsoft.org/v69/i12/},
   urldate = {2025-04-22},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/King et al. - 2016 - Statistical Inference for Partially Observed Markov Processes via the R Package pomp.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/King et al. - 2016 - Statistical Inference for Partially Observed Markov Processes via the R Package pomp.pdf}
 }
 
 @book{kloedenNumericalSolutionStochastic1992,
@@ -2009,7 +2069,7 @@
   urldate = {2025-06-22},
   isbn = {978-3-662-12616-5},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Kloeden y Platen - 2010 - Numerical solution of stochastic differential equations.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Kloeden y Platen - 2010 - Numerical solution of stochastic differential equations.pdf}
 }
 
 @article{kobayashiPredictingInterventionEffect2020,
@@ -3013,23 +3073,20 @@
   isbn = {978-1-108-18673-5},
   langid = {english},
   pagetotal = {1},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/sarkka - applied differential equations.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/sarkka - applied differential equations.pdf}
 }
 
 @book{sarkkaBayesianFilteringSmoothing2023,
   title = {Bayesian Filtering and Smoothing},
-  author = {Särkkä, Simo},
-  namea = {Svensson, Lennart},
-  nameatype = {collaborator},
+  author = {Särkkä, Simo and Svensson, Lennart},
   date = {2023},
   edition = {2nd ed},
   publisher = {Cambridge University Press},
   location = {Cambridge},
   abstract = {The second edition of this accessible introduction for graduate students and advanced undergraduates presents the current state-of-the-art filtering and smoothing methods in a unified Bayesian framework. The book introduces all the main concepts and ideas, and contains numerous examples and exercises to let you put the theory into practice},
-  isbn = {978-1-108-92664-5 978-1-108-91740-7},
+  isbn = {978-1-108-92664-5},
   langid = {english},
-  pagetotal = {1},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Särkkä - 2023 - Bayesian Filtering and Smoothing.pdf}
+  pagetotal = {1}
 }
 
 @article{sarkkaPosteriorInferenceParameters2015,
@@ -3046,8 +3103,7 @@
   url = {http://link.springer.com/10.1007/s11222-013-9441-1},
   urldate = {2025-06-23},
   abstract = {This article is concerned with Bayesian estimation of parameters in non-linear multivariate stochastic differential equation (SDE) models occurring, for example, in physics, engineering, and financial applications. In particular, we study the use of adaptive Markov chain Monte Carlo (AMCMC) based numerical integration methods with nonlinear Kalman-type approximate Gaussian filters for parameter estimation in non-linear SDEs. We study the accuracy and computational efficiency of gradient-free sigma-point approximations (Gaussian quadratures) in the context of parameter estimation, and compare them with Taylor series and particle MCMC approximations. The results indicate that the sigma-point based Gaussian approximations lead to better approximations of the parameter posterior distribution than the Taylor series, and the accuracy of the approximations is comparable to that of the computationally significantly heavier particle MCMC approximations.},
-  langid = {english},
-  file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Sarkka, S., et al. - Posterior inference on parameters of stochastic differential equations via non-linear filtering and adaptive MCMC.pdf}
+  langid = {english}
 }
 
 @book{sarkkaRecursiveBayesianInference2006,
@@ -3138,6 +3194,22 @@
   abstract = {This paper takes confirmed cases of COVID-19 from January 20 to March 18, 2020 as the sample set to establish the susceptible-exposed-infected-recovered (SEIR) model. By evaluating effects of different non-pharmaceutical interventions (NPIs), the research expects to provide references to other countries for formulating corresponding policies. This article divides all non-pharmaceutical interventions into three types according to their different roles. The results show that type-A and type-B non-pharmaceutical interventions both can delay the timing of large-scale infections of the susceptible population, timing of the number of exposed individuals to peak, and timing of peaking of the number of infected cases, as well as decrease the peak number of exposed cases. Moreover, type-B non-pharmaceutical interventions have more significant effects on susceptible and exposed populations. Type-C non-pharmaceutical interventions for improving the recovery rate of patients are able to effectively reduce the peak number of patients, greatly decrease the slope of the curve for the number of infected cases, substantially improve the recovery rate, and lower the mortality rate; however, these non-pharmaceutical interventions do not greatly delay the timing of the number of infected cases to peak. And based on the above analysis, we proposed some suggestions.},
   langid = {english},
   file = {/home/edtrelo/Documentos/Universidad/Tesis/Entregables/Referencias/Shou, M., et. al. - Effect evaluation of non-pharmaceutical interventions taken in China to contain the COVID-19 epidemic based on the susceptible-exposed-infected-recovered model.pdf}
+}
+
+@online{simhaSimpleStochasticSIR2020,
+  title = {A Simple {{Stochastic SIR}} Model for {{COVID}} 19 {{Infection Dynamics}} for {{Karnataka}}: {{Learning}} from {{Europe}}},
+  shorttitle = {A Simple {{Stochastic SIR}} Model for {{COVID}} 19 {{Infection Dynamics}} for {{Karnataka}}},
+  author = {Simha, Ashutosh and Prasad, R. Venkatesha and Narayana, Sujay},
+  date = {2020-04-16},
+  eprint = {2003.11920},
+  eprinttype = {arXiv},
+  eprintclass = {q-bio},
+  doi = {10.48550/arXiv.2003.11920},
+  url = {http://arxiv.org/abs/2003.11920},
+  urldate = {2025-07-09},
+  abstract = {In this short note we model the region-wise trends of the evolution to COVID-19 infections using a stochastic SIR model. The SIR dynamics are expressed using \textbackslash textit\{It\textbackslash\textasciicircum o-stochastic differential equations\}. We first derive the parameters of the model from the available daily data from European regions based on a 24-day history of infections, recoveries and deaths. The derived parameters have been aggregated to project future trends for the Indian subcontinent, which is currently at an early stage in the infection cycle. The projections are meant to serve as a guideline for strategizing the socio-political counter measures to mitigate COVID-19.},
+  pubstate = {prepublished},
+  keywords = {Mathematics - Dynamical Systems,Quantitative Biology - Populations and Evolution}
 }
 
 @article{sorensenEstimationDiffusionParameters,
@@ -3593,7 +3665,7 @@
   urldate = {2025-06-23},
   abstract = {The dynamics of a stochastic SIS epidemic model is investigated. First, we show that the system admits a unique positive global solution starting from the positive initial value. Then, the long-term asymptotic behavior of the model is studied: when                                                                        R                     0                                      ≤                   1                                               , we show how the solution spirals around the disease-free equilibrium of deterministic system under some conditions; when                                                                        R                     0                                      {$>$}                   1                                               , we show that the stochastic model has a stationary distribution under certain parametric restrictions. In particular, we show that random effects may lead the disease to extinction in scenarios where the deterministic model predicts persistence. Finally, numerical simulations are carried out to illustrate the theoretical results.},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/ZHou - Survival and Stationary Distribution in a Stochastic SIS Model.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/ZHou - Survival and Stationary Distribution in a Stochastic SIS Model.pdf}
 }
 
 @article{zhuangParameterStateEstimation2012,
@@ -3611,5 +3683,5 @@
   urldate = {2025-06-23},
   abstract = {This paper presents a new parameter and state estimation algorithm for single-input single-output systems based on canonical state space models from the given input–output data. Difficulties of identification for state space models lie in that there exist unknown noise terms in the formation vector and unknown state variables. By means of the hierarchical identification principle, those noise terms in the information vector are replaced with the estimated residuals and a new least squares algorithm is proposed for parameter estimation and the system states are computed by using the estimated parameters. Finally, an example is provided.},
   langid = {english},
-  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/Tesis/Referencias/Zhuang - Parameter and state estimation algorithm for single-input single-output linear systems using the canonical state space models.pdf}
+  file = {/home/edtrelo/Documentos/Google Drive/edtrelo@ciencias.unam.mx/[01] Tesis/Referencias/Zhuang - Parameter and state estimation algorithm for single-input single-output linear systems using the canonical state space models.pdf}
 }
