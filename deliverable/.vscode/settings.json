@@ -41,6 +41,7 @@
   },
   "latex-workshop.latex.recipe.default": "xelatex -> biber -> xelatex x2",
   "latex-workshop.bibtex-format": "biblatex",
-  "latex-workshop.latex.bibDirs": ["./"]
+  "latex-workshop.latex.bibDirs": ["./"],
+  "remote.containers.dockerPath": "/usr/local/bin/docker"
 }
 
