@@ -1,0 +1,21 @@
+\section{Inferencia bayesiana}
+
+Supongamos que tenemos una muestra $\mathcal D_N = \left(y_1,...,y_N\right)$ de variables aleatorias independientes e idénticamente distribuidas 
+cuya función de densidad $f$ está parametrizada por $\boldsymbol{\theta} = (\theta_1,...,\theta_K) \in \Theta$, cuyo valor real es desconocido. 
+La \textit{inferencia (estadística)} toma las observaciones $\mathcal D$, las procesa y trata de encontrar formas de describir a $\boldsymbol{\theta}$. \\
+
+En el \textit{enfoque Bayesiano} de la inferencia estadística suponemos que la probabilidad es una medida de la incertidumbre, que resulta útil para analizar fenómenos que no podemos reproducir tantas veces como queramos. En este contexto, se trata a $\btheta$ como una variable aleatoria (o vector aleatorio, según el valor de $K$) y las observaciones que recolectemos nos ayudarán a ajustar nuestras creencias acerca de $\btheta$.\\
+
+El análisis Bayesiano sigue este proceso: 
+
+\begin{enumerate}
+    \item Toda la información y creencias que tenemos acerca de $\btheta$ se cuantifican dentro de la \textit{distribución a priori}, $p(\btheta)$.
+    \item Se recolecta una muestra $\mathcal D_n$, cuya generación suponemos que depende del parámetro. Debemos entonces relacionar las observaciones y el parámetro a través de la función de \textit{verosimilitud}, $p(\mathcal D_n|\btheta)$.
+    \item Ajustamos la información que tenemos de $\btheta$ dado que hemos observado la muestra. Esto se hace a través del Teorema de Bayes,
+    $$p(\btheta|\mathcal D_n) = \frac{p(\mathcal D_n|\btheta)p(\btheta)}{p(\mathcal D_n)}$$
+    La inferencia se hace sobre la llamada \textit{distribución posteriori}, $p(\btheta|\mathcal D_n)$.
+\end{enumerate}
+
+\input{capitulos/cap01/inferencia_bayesiana/MCMC.tex}
+\input{capitulos/cap01/inferencia_bayesiana/POPMs.tex}
+

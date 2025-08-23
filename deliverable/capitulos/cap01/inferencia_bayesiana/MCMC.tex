@@ -1,0 +1,64 @@
+\subsection{Monte Carlo: clásico y por cadenas de Markov}
+
+% desarrollar en qué casos es difícil de calcular
+% hablar de que es para modelos que valen la pena
+En los modelos bayesianos, la integral que normaliza la distribución a posteriori 
+es, en general, difícil de calcular y por ello la inferencia Bayasiana perdió
+simpatía frente a los métodos frecuentistas. Sin embargo, el desarrollo de poder de cómputo
+accesible junto con la teoría de los métodos de Monte Carlo que surgió a mediados del 
+siglo revitalizaron la estadística Bayesiana. 
+
+\subsubsection{Técnicas de Monte Carlo}
+
+Dada una variable aleatoria con función de distribución $f$ condicionada, el valor 
+esperado de una función de tal variable está dado por
+
+\begin{equation}
+    \mathbb E\left[h(x)|y\right]=\int h(x)f(x|y)dx
+\end{equation} 
+
+Esta integral sólo puede ser evaluada analíticamente en contados casos, por lo que es 
+necesario utilizar métodos de aproximación, siendo los métodos de Monte Carlo uno de 
+los más usados dado su facilidad de implementación e invarianza respecto a la 
+dimensionalidad de la integral. 
+
+\subsubsection{Algoritmo de Metropolis-Hastings}
+
+Dada una densidad objetivo $f$, el algoritmo de Metropolis-Hastings contruye una 
+cadena de Markov con distribución límite $f$, es decir que, a la larga, al tomar 
+muestras de esta cadena se está muestreando de una aproximación a la verdadera
+distribución objetivo. Para implementar esta aproximación se necesita de una 
+función de transición $q:S\times S\to \mathbb R$. La construcción de esta 
+cadena se presenta en el algoritmo \ref{alg:Metropolis-Hastings}. La validez de este 
+algoritmo ha sido ya demostrada, véase \cite{rinconElementosSimulacionEstocastica2024}. 
+
+\begin{algorithm}
+\caption{Muestreo de Metropolis-Hastings}
+\label{alg:Metropolis-Hastings}
+\begin{algorithmic}[1]
+\vspace{0.2cm}
+\Require \parbox[t]{13cm}{
+    Función de densidad objetivo $f$, función de transición $q(x,y)$,
+    estado inicial $x_0\in S$
+}
+\vspace{0.2cm}
+\Ensure 
+\parbox[t]{13cm}{
+    Muestra de una cadena de Markov con distribución estacionaria $f$
+}
+\vspace{0.2cm}
+\State $x \leftarrow x_0$
+\For{$t\in 1,2,...$}
+    \State $y \sim q(x, y)$
+    \State $\alpha = \min\left\{\frac{f(y)}{f(x)}\cdot \frac{q(y,x)}{q(x,y)},\ 1\right\}$
+    \State $u \sim U(0,1)$
+    \If{$u \leq \alpha$}
+        \State $x \leftarrow y$
+    \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+
+
+

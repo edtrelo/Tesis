@@ -1,18 +1,25 @@
 \section{Resultados básicos de probabilidad}
-\cite{billingsleyProbabilityMeasure1995}
 
+Esta sección se construyó a partir de  
+\cite{billingsleyProbabilityMeasure1995,
+rinconCursoIntermedioProbabilidad2007,
+mardiaMultivariateAnalysis1979}. Se asume que el 
+lector tiene ya conocimento de definiciones básicas de 
+la teoría de probabilidad.
 Considerese un espacio de probabilidad $(\Omega,
 \mathcal F, P)$ definido como en 
 \cite{rinconCursoIntermedioProbabilidad2007}. 
-
-%\begin{theorem}[Teorema de Bayes]
-%\end{theorem}
 
 % ----------------------------------------- %
 % NUEVA SUBSECCIÓN 
 % ----------------------------------------- %
 
 \subsection{Variables y vectores aleatorios} 
+
+Para una definción de variable y vector aletorios se puede 
+consultar a \cite{rinconCursoIntermedioProbabilidad2007}. 
+Para una introducción a la teoría de medida, véase 
+\cite{billingsleyProbabilityMeasure1995}.
 
 \begin{definition}
     Se dice que una función $g:\mathbb R^n\to \mathbb R^m$  
@@ -24,6 +31,10 @@ Considerese un espacio de probabilidad $(\Omega,
     Si $f:\mathbb R^n\to \mathbb R^m$ es continua, entonces es
     Borel medible.
 \end{proposition}
+
+\begin{proof}
+    Véase \cite{billingsleyProbabilityMeasure1995}.
+\end{proof}
 
 \begin{theorem}[Teorema de cambio de variable]
     Sea $X$ una varible aleatoria continua con soporte en 
@@ -38,6 +49,10 @@ Considerese un espacio de probabilidad $(\Omega,
     0 & \text{en otro caso}
     \end{cases}$$
 \end{theorem}
+
+\begin{proof}
+    Véase \cite{rinconCursoIntermedioProbabilidad2007}.
+\end{proof}
 
 \noindent\textbf{Ejemplo.} Sea $Y=\frac{1}{X}$ donde $X\sim U(a,b)$, 
 con $0<a<b$. La función $g(x) = \frac{1}{x}$ es continua y 
@@ -74,6 +89,8 @@ $$f_Y(y) = \frac{1}{(b-a)y^2}
 
 \subsection{Distribuciones}
 
+Prueba 2
+
 \begin{definition}[Distribución Normal Multivariada]
     Se dice que el vector aleatorio $X$ tiene una distribución
     Normal $p$-variada (multivariada si no se hace referencia 
@@ -97,3 +114,6 @@ Si $X\sim N_p(\mu,\ \Sigma)$ y $Y=AX+c$, donde
 $A\in \mathbb R^{p\times q}$ y $c\in \mathbb R^q$, 
 entonces $Y\sim N_q(A\mu + c,\ A\Sigma A^T)$.
 \end{theorem}
+
+Para más propiedades útiles de la distribución Normal multivarida puede 
+consultarse a \cite{mardiaMultivariateAnalysis1979}.
