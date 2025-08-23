@@ -14,7 +14,12 @@
       "name": "biber",
       "command": "biber",
       "args": ["%DOC%"]
-    }
+    },
+    {
+    "name": "sync-pdf",
+    "command": "/bin/bash",
+    "args": ["./sync_pdf.sh"]
+  }
   ],
   "latex-workshop.latex.recipes": [
     {
@@ -22,8 +27,8 @@
       "tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
     },
     {
-      "name": "xelatex -> biber -> xelatex x2",
-      "tools": ["xelatex", "biber", "xelatex", "xelatex"]
+      "name": "xelatex -> biber -> xelatex x2 -> sync",
+      "tools": ["xelatex", "biber", "xelatex", "xelatex", "sync-pdf"]
     }
   ],
   "files.exclude": {
@@ -39,7 +44,7 @@
   "**/*.bcf": true,
   "**/*.blg": true
   },
-  "latex-workshop.latex.recipe.default": "xelatex -> biber -> xelatex x2",
+  "latex-workshop.latex.recipe.default": "xelatex -> biber -> xelatex x2 -> sync",
   "latex-workshop.bibtex-format": "biblatex",
   "latex-workshop.latex.bibDirs": ["./"],
   "remote.containers.dockerPath": "/usr/local/bin/docker"
