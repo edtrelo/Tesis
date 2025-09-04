@@ -12,35 +12,23 @@ estocástica. Se ha elaborado a partir de
     dentro del conjunto $S$ llamado espacio de estados. 
 \end{definition}
 
-% Además, dependiendo de la naturaleza de $I$ y de $S$, los 
-% procesos estocásticos reciben distintos nombres, como se
-% muestra en la tabla \ref{tab:procesos_estocasticos}
+\begin{definition}
+    Dos procesos estocásticos $\{X_t\}_{t\geq 0}$ y 
+    $\{Y_t\}_{t\geq 0}$ son independientes si para cualesquiera dos enteros 
+    $n$ y $m$, y tiempos $0\leq t_1<t_2<...<t_n$ y $0\leq s_1<s_2<...<s_m$, 
+    se cumple que 
+    $$F_{X_{t_1},...,X_{t_n},Y_{s_1},...,Y_{s_m}}(x_1,...,x_n,y_1,...,y_m)=F_{X_{t_1},...,X_{t_n}}(x_1,...,x_n)F_{Y_{s_1},...,Y_{s_m}}(y_1,...,y_m).$$
+\end{definition}
 
-% \begin{table}[h]
-%     \centering
-%     \begin{tabular}{c c c}
-%             & $I$ contable & $I$ incontable \\
-%     $S$ discreto   & discreto a tiempo discreto            &  \\
-%     $S$ continuo   &              &  
-%     \end{tabular}
-%     \caption{Una tabla sencilla}
-%     \label{tab:procesos_estocasticos}
-% \end{table}
+\subsection{Cadenas de Markov}
 
 \begin{definition}
     Sea $X = \{X_t,\ t\in I\}$ un proceso estocástico. Si 
     para cualesquiera tiempos $0\leq t_1<t_2<...<t_n$
     en $I$ se cumple que 
-    $$p(x_{t_n}|x_{t_{n-1},...,t_{t_1}})=p(x_{t_n}|x_{t_{n-1}})$$
+    $$p(x_{t_n}|x_{t_{n-1},...,t_{t_1}})=p(x_{t_n}|x_{t_{n-1}}),$$
     entonces se dice que $X$ tiene la propiedad de Markov.
 \end{definition}
-
-\begin{definition}
-    Dos procesos estocásticos $\{X_t\}_{t\geq 0}$ y 
-    $\{Y_t\}_{t\geq 0}$
-\end{definition}
-
-\subsection{Cadenas de Markov}
 
 \subsection{Movimiento Browniano}
 
@@ -52,7 +40,7 @@ estocástica. Se ha elaborado a partir de
         \item $W_0=0$, c.s.
         \item Las trayectorias son continuas.
         \item El proceso tiene incrementos independientes. 
-        \item Para cualesquiera $0\leq s<t$, $W_t-W_s\sim N(0,t-s)$
+        \item Para cualesquiera $0\leq s<t$, $W_t-W_s\sim N(0,t-s)$.
     \end{enumerate}
 \end{definition}
 
@@ -60,14 +48,14 @@ estocástica. Se ha elaborado a partir de
     Un proceso estocástico $d$-dimensional $W = \{W_t^1,...,
     W_t^d\}_{t\geq 0}$ es un movimiento Browniano estándar
     $d$-dimensional si $\{W_t^i\}$ es un movimiento Browniano 
-    estándar para cada $i=1,...,d$ y los procesos $\{W_t^1\},...,\{W_t^d\}$ 
+    estándar para cada $i=1,...,d$ y los procesos $\{W_t^1\},...,\{W_t^d\}$
     son independientes dos a dos.
 \end{definition}
 
 \begin{proposition}\label{prop:dist_saltos_MB}
     Sea $W$ un movimiento Browniano estándar $d-$dimensional. Entonces 
     para $0\leq s < t$ se tiene que 
-    $$W_t-W_s \sim N_d(0,\ (t-s)I_d)$$
+    $$W_t-W_s \sim N_d(0,\ (t-s)I_d).$$
 \end{proposition}
 
 \begin{proof}
@@ -78,6 +66,6 @@ entonces $X$ y $Y$ son independientes y por la proposición \ref{prop:fun_vect_i
 se tiene que $g(X)=W_t^i-W_s^i$ y $g(Y)=W_t^j-W_s^j$ son independientes.
 
 Luego, para cada $i=1,...,d$, $W_t^i-W_s^i\sim N(0, t-s)$. Por la 
-independencia dos a dos se tiene que $W_t-W_s \sim N_d(0,\ (t-s)I_d)$
+independencia dos a dos se tiene que $W_t-W_s \sim N_d(0,\ (t-s)I_d)$.
 \end{proof}
 

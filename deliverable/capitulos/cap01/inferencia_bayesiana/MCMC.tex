@@ -3,24 +3,36 @@
 % desarrollar en qué casos es difícil de calcular
 % hablar de que es para modelos que valen la pena
 En los modelos bayesianos, la integral que normaliza la distribución a posteriori 
-es, en general, difícil de calcular y por ello la inferencia Bayasiana perdió
-simpatía frente a los métodos frecuentistas. Sin embargo, el desarrollo de poder de cómputo
-accesible junto con la teoría de los métodos de Monte Carlo que surgió a mediados del 
-siglo revitalizaron la estadística Bayesiana. 
+es, en general, es difícil de calcular y por ello los métodos frecuentistas eran preferidos. 
+Sin embargo, el desarrollo de poder de cómputo accesible junto con la teoría de los métodos de Monte Carlo 
+que surgió a mediados del siglo XX revitalizaron el interés por la estadística Bayesiana. 
 
-\subsubsection{Técnicas de Monte Carlo}
+\subsubsection{Monte Carlo clásico}
 
-Dada una variable aleatoria con función de distribución $f$ condicionada, el valor 
+Esta presentación de los métodos de Monte Carlo ha sido tomada de \cite{doucetSequentialMonteCarlo2001}, pues 
+sirve el mismo propósito: presentar los filtros de partículas. Dada una variable aleatoria con función de 
+distribución $f$ condicionada, el valor 
 esperado de una función de tal variable está dado por
 
-\begin{equation}
-    \mathbb E\left[h(x)|y\right]=\int h(x)f(x|y)dx
+\begin{equation}\label{eq:esperanza_MC}
+    I(h) = \mathbb E\left[h(x)|y\right]=\int h(x)f(x|y)dx.
 \end{equation} 
 
 Esta integral sólo puede ser evaluada analíticamente en contados casos, por lo que es 
 necesario utilizar métodos de aproximación, siendo los métodos de Monte Carlo uno de 
 los más usados dado su facilidad de implementación e invarianza respecto a la 
-dimensionalidad de la integral. 
+dimensionalidad de la integral.
+
+Si se tiene la capacidad de obtener $N$ muestras independientes e idénticamente distribuidas $\{x_{(i)},i=1,...,N\}$
+de $f(x|y)$, entonces se puede contruir el estimador empírico de \ref{eq:esperanza_MC} con
+\begin{equation}
+    I_N(h) = \frac{1}{N}\sum_{i=1}^{N}h(x^{(i)}),
+\end{equation}
+que resulta ser un estimador insesgado. Por la ley fuerte de los grandes números, 
+\begin{equation}
+    I_N(h) \to I(h)
+\end{equation}
+casi seguramente cuando $N\to \infty$. 
 
 \subsubsection{Algoritmo de Metropolis-Hastings}
 

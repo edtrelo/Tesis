@@ -45,8 +45,8 @@ Para una introducción a la teoría de medida, véase
     su función de densidad es 
     $$f_Y(y) = 
     \begin{cases}
-    f_X(g^{-1}(y))\left|\frac{d}{dy}g^{-1}(y)\right| & \text{para } y\in g(a,b)\\
-    0 & \text{en otro caso}
+    f_X(g^{-1}(y))\left|\frac{d}{dy}g^{-1}(y)\right| & \text{para } y\in g(a,b),\\
+    0 & \text{en otro caso}.
     \end{cases}$$
 \end{theorem}
 
@@ -59,7 +59,7 @@ con $0<a<b$. La función $g(x) = \frac{1}{x}$ es continua y
 estrictamente decreciente en $(a,b)$ y su inversa, que es ella
 misma, es diferenciable. Entonces 
 $$f_Y(y) = \frac{1}{(b-a)y^2}
-\cdot \mathbb I_{\left(\frac{1}{b},\frac{1}{a}\right)}(y)$$
+\cdot \mathbb I_{\left(\frac{1}{b},\frac{1}{a}\right)}(y).$$
 
 \subsection{Independencia}
 
@@ -67,7 +67,7 @@ $$f_Y(y) = \frac{1}{(b-a)y^2}
     Los vectores aleatorios $X=(X_1,...,X_n)$ y $Y=(Y_1,...,Y_m)$
     son independientes, si para cada $A\in \mathcal B(\mathbb R^n)$
     y cada $B\in \mathcal B(\mathbb R^m)$ se cumple que
-    $$P(X\in A,\ Y\in B)=P(X\in A)P(X\in B)$$
+    $$P(X\in A,\ Y\in B)=P(X\in A)P(X\in B).$$
 \end{definition}
 
 \begin{proposition}\label{prop:fun_vect_indep}
@@ -83,7 +83,7 @@ $$f_Y(y) = \frac{1}{(b-a)y^2}
     \begin{align*}
         P(f(X)\in A,\ g(X)\in B)&= P(X\in f^{-1}(A),Y\in f^{-1}(B))\\
         &=  P(X\in f^{-1}(A))P(Y\in f^{-1}(B))\\
-        &=  P(f(X)\in A)P(g(Y)\in B)
+        &=  P(f(X)\in A)P(g(Y)\in B).
     \end{align*}
 \end{proof}
 
@@ -106,7 +106,7 @@ $X\sim N_p(\mu,\ \Sigma)$ y su función de densidad es
     f(x) = \frac{1}{\sqrt{2\pi\det(\Sigma)}}\cdot 
     \exp\left(
         -\frac{1}{2}(x-\mu)^T \Sigma^{-1} (x-\mu)
-    \right)
+    \right).
 \end{equation*}
 
 \begin{theorem}

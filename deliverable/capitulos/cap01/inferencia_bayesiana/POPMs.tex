@@ -4,7 +4,7 @@
 Sea $\btheta\in\Theta\subseteq \mathbb R^K$. Para cada valor fijo de $\btheta$, el proceso estocástico $\boldsymbol{X} = \{X(t,\btheta)\}_{t\in T}$ 
 representa un sistema dinámico que no podemos observar directamente y cuya evolución futura depende únicamente del valor actual del sistema, 
 \begin{equation}\label{eq:MarkovProperty}
-    p(X_{\tau_{n+1}}|\ X_{\tau_0},...,X_{\tau_n},\btheta) = f(X_{\tau_{n+1}}|X_{\tau_n}, \btheta)
+    p(X_{\tau_{n+1}}|\ X_{\tau_0},...,X_{\tau_n},\btheta) = f(X_{\tau_{n+1}}|X_{\tau_n}, \btheta),
 \end{equation}
 es decir, $\boldsymbol{X}$ es un proceso de Markov, para $\tau_0<...<\tau_n<\tau_{n+1}$. En favor de la claridad, se utilizá la siguiente notación $X_i$ para denotar a  $X(t_i, \btheta)$ cuando sea claro que $\btheta$ está fijo 
 y $X_{i:j}$ para aludir a $(X_i,\ X_{i+1},\ ...,\ X_j)$.\\
@@ -12,11 +12,11 @@ y $X_{i:j}$ para aludir a $(X_i,\ X_{i+1},\ ...,\ X_j)$.\\
 El proceso $\boldsymbol{X}$ sólo puede ser observado indirectamente y es través de otro proceso $\boldsymbol{Y} = \{Y(t, \btheta)\}_{t\in T_{obs}}$ donde $T_{obs}=\{t_i\in 
 T,\ i=1,...,N\}$ son los tiempos en los que se realizan estas observaciones. Sea $t_0\in T$ el tiempo en que inicia el proceso $\boldsymbol{X}$ y $t_0\leq t_1 < t_2 <\ ...\ <t_{N}$. En general, el conjunto de índices de las observaciones es subconjunto de los Naturales. Las variables aleatorias observables $Y_{1:N}$ son condicionalmente independientes dadas $X_{0:N}$ y la observación al tiempo actual sólo depende del estado del sistema en tal momento,
 \begin{equation}\label{eq:ObservationProbability}
-    p(Y_{n}|\ Y_{1:n-1}, X_{0:n}, \btheta) = g(Y_n| X_n, \btheta) 
+    p(Y_{n}|\ Y_{1:n-1}, X_{0:n}, \btheta) = g(Y_n| X_n, \btheta).
 \end{equation}
 Finalmente, al tiempo $t_0$, el estado inicial del sistema está sujeto a la distribución inicial
 \begin{equation}\label{eq:InitialDistribution}
-    p(X_{0}|\btheta) = \mu(\btheta)
+    p(X_{0}|\btheta) = \mu(\btheta).
 \end{equation}
 
 \begin{definition}
@@ -25,9 +25,9 @@ Finalmente, al tiempo $t_0$, el estado inicial del sistema está sujeto a la dis
     \textit{proceso de Markov parcialmente observado}, denotado como 
     \begin{align}\label{eq:POMP}
        \begin{split}
-        X_{n}&\sim f(X_{n-1},\btheta)\\
-        Y_{n}&\sim g(X_n,\btheta)\\
-        X_0&\sim\mu(\btheta)
+        X_{n}&\sim f(X_{n-1},\btheta),\\
+        Y_{n}&\sim g(X_n,\btheta),\\
+        X_0&\sim\mu(\btheta).
     \end{split} 
     \end{align}
 \end{definition}
@@ -44,11 +44,11 @@ suficiente maquinaria teórica y algorítmica para realizar las siguientes tarea
     \item El \textit{filtrado} consiste en obtener la distribución marginal del 
     estado al tiempo actual usando la observación actual y aquellas 
     obtenidas con anterioridad, es decir, se calcula 
-    $$p(X_k|Y_{1:k}),\quad k = 1,...,N$$
+    $$p(X_k|Y_{1:k}),\quad k = 1,...,N.$$
     \item El \textit{suavizado} consiste en obtener la distribución marginal 
     del estado en un tiempo anterior usando todas las observaciones acumuladas hasta 
     el tiempo actual, es decir, se calcula 
-    $$p(X_k|Y_{1:N}),\quad j = 1,...,N-1$$
+    $$p(X_k|Y_{1:N}),\quad j = 1,...,N-1.$$
     \item Para la \textit{predicción} se calcula la distribución marginal del estado 
     en algún tiempo futuro, es decir, se obtiene 
     $$p(X_{k+n}|Y_{1:k}),\quad k = 1,...,N,\quad n=1,2,...$$
