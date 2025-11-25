@@ -102,12 +102,12 @@ Además, si $X$ de distribuye Normal $p$-variada y tiene media
 $\mu\in \mathbb R^p$ y matriz de covarianza definida positiva
 $\Sigma \in \mathbb R^{p\times p}$, entonces se escribe
 $X\sim N_p(\mu,\ \Sigma)$ y su función de densidad es 
-\begin{equation*}
-    f(x) = \frac{1}{\sqrt{2\pi\det(\Sigma)}}\cdot 
+\begin{equation}\label{eq:DistNormal}
+    f(x) = \frac{1}{\sqrt{(2\pi)^p\det(\Sigma)}}\cdot 
     \exp\left(
         -\frac{1}{2}(x-\mu)^T \Sigma^{-1} (x-\mu)
     \right).
-\end{equation*}
+\end{equation}
 
 \begin{theorem}
 Si $X\sim N_p(\mu,\ \Sigma)$ y $Y=AX+c$, donde 

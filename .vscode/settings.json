@@ -1,24 +1,24 @@
-{
+{ 
   "latex-workshop.latex.tools": [
     {
       "name": "pdflatex",
       "command": "pdflatex",
-      "args": ["-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"]
+      "args": ["-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DIR%/%DOCFILE%"]
     },
     {
       "name": "xelatex",
       "command": "xelatex",
-      "args": ["-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"]
+      "args": ["-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DIR%/%DOCFILE%"]
     },
     {
       "name": "biber",
       "command": "biber",
-      "args": ["%DOC%"]
+      "args": ["%DIR%/%DOCFILE%"]
     },
     {
     "name": "sync-pdf",
     "command": "/bin/bash",
-    "args": ["./sync_pdf.sh"]
+    "args": ["%DIR%/sync_pdf.sh"]
   }
   ],
   "latex-workshop.latex.recipes": [
@@ -46,7 +46,7 @@
   },
   "latex-workshop.latex.recipe.default": "xelatex -> biber -> xelatex x2 -> sync",
   "latex-workshop.bibtex-format": "biblatex",
-  "latex-workshop.latex.bibDirs": ["./"],
-  "remote.containers.dockerPath": "/usr/local/bin/docker"
+  "latex-workshop.latex.bibDirs": ["%DIR%"],
+  "julia.NumThreads": 16
 }
 

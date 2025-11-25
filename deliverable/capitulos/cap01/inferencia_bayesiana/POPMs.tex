@@ -1,66 +1,73 @@
-\subsection{Modelos de Markov parcialmente observados}
+\subsection{Procesos de Markov parcialmente observados}
 
+Se ha construido esta parte del trabajo a partir de \cite{kingStatisticalInferencePartially2016}.
 
-Sea $\btheta\in\Theta\subseteq \mathbb R^K$. Para cada valor fijo de $\btheta$, el proceso estocástico $\boldsymbol{X} = \{X(t,\btheta)\}_{t\in T}$ 
-representa un sistema dinámico que no podemos observar directamente y cuya evolución futura depende únicamente del valor actual del sistema, 
+Sea $\theta\in\Theta\subseteq \mathbb R^K$. Para cada valor fijo de $\theta$, el proceso estocástico 
+$X = \{X(t,\theta)\}_{t\in T}$ representa un sistema dinámico que no puede ser observado 
+directamente y cuya evolución futura depende únicamente del valor anterior inmediato. Dado un vector de 
+parámetros fijo y un tiempo $\tau_i$, $i=0,...,n$, se usarán las notaciones $X_i$ para $X(t_i, \theta)$
+y $X_{i:j}$ para $(X_i, X_{i+1},...,X_{j})$, respectivamente. La función de densidad del sistema en el 
+tiempo actual condicionado a la evolución pasada cumple que
 \begin{equation}\label{eq:MarkovProperty}
-    p(X_{\tau_{n+1}}|\ X_{\tau_0},...,X_{\tau_n},\btheta) = f(X_{\tau_{n+1}}|X_{\tau_n}, \btheta),
+    f_{X_{j}|X_{0},...,X_{j-1}}(x_{{m}}|\ x_{0},...,x_{j-1},\theta) = f_{X_{j}|X_{j-1}}(x_{j}|x_{j-1}, \theta) = 
+    \varphi(x_j|x_{j-1},\theta),
 \end{equation}
-es decir, $\boldsymbol{X}$ es un proceso de Markov, para $\tau_0<...<\tau_n<\tau_{n+1}$. En favor de la claridad, se utilizá la siguiente notación $X_i$ para denotar a  $X(t_i, \btheta)$ cuando sea claro que $\btheta$ está fijo 
-y $X_{i:j}$ para aludir a $(X_i,\ X_{i+1},\ ...,\ X_j)$.\\
+para $j=1,...,m$. Es decir, $X$ es un proceso de Markov.
 
-El proceso $\boldsymbol{X}$ sólo puede ser observado indirectamente y es través de otro proceso $\boldsymbol{Y} = \{Y(t, \btheta)\}_{t\in T_{obs}}$ donde $T_{obs}=\{t_i\in 
-T,\ i=1,...,N\}$ son los tiempos en los que se realizan estas observaciones. Sea $t_0\in T$ el tiempo en que inicia el proceso $\boldsymbol{X}$ y $t_0\leq t_1 < t_2 <\ ...\ <t_{N}$. En general, el conjunto de índices de las observaciones es subconjunto de los Naturales. Las variables aleatorias observables $Y_{1:N}$ son condicionalmente independientes dadas $X_{0:N}$ y la observación al tiempo actual sólo depende del estado del sistema en tal momento,
+El proceso $X$ sólo puede ser observado indirectamente a través de otro proceso $Y = \{Y(t, \theta)\}_{t\in T_{obs}}$.
+Sea $t_0\in T$ el tiempo inicial del proceso X y sean $T_{obs}=\{t_i\in T,\ i=1,...,n\}$ los tiempos en los 
+que se ha observado el proceso Las variables aleatorias, tales que $t_0\leq t_1<...<t_n.$ Las variables aleatorias 
+observables $Y_{1:n}$ son condicionalmente independientes dadas $X_{0:n}$ y, además, el valor actual del proceso
+$Y$ depende únicamente del estado actual del proceso $X$. Para $i=1,...,n$ se cumple que 
 \begin{equation}\label{eq:ObservationProbability}
-    p(Y_{n}|\ Y_{1:n-1}, X_{0:n}, \btheta) = g(Y_n| X_n, \btheta).
+    f_{Y_i|Y_{1:i-1},X_{0:i}}(y_{i}|\ y_{1:i-1}, x_{0:i}, \theta) = f_{Y_i|X_i}(y_i| x_i, \theta) = \psi(y_i|x_i, \theta).
 \end{equation}
 Finalmente, al tiempo $t_0$, el estado inicial del sistema está sujeto a la distribución inicial
 \begin{equation}\label{eq:InitialDistribution}
-    p(X_{0}|\btheta) = \mu(\btheta).
+    f_{X_0}(x_{0}|\theta) = \mu(\theta).
 \end{equation}
 
 \begin{definition}
-    Un sistema dinámico $X$ con conjunto de observaciones $Y$ que cumple con \ref{eq:MarkovProperty}, 
-    \ref{eq:ObservationProbability} y \ref{eq:InitialDistribution} es un 
-    \textit{proceso de Markov parcialmente observado}, denotado como 
+    Dado un vector de parémetros $\theta \in \Theta \subseteq \mathbb R^K$, un sistema dinámico latente 
+    $X$ que cumple \ref{eq:MarkovProperty} y que tiene distribución inicial \ref{eq:InitialDistribution}
+    al tiempo $t_0$, del cual, además, se han recolectado las observaciones $y^* = (y_1^*,...,y_n^*)$ en 
+    los tiempos $t_0\leq t_1<...<t_n$ de un modelo \ref{eq:ObservationProbability}, es un \textit{proceso de Markov 
+    parcialmente observado} y, generalmente, se denota de la siguiente manera
     \begin{align}\label{eq:POMP}
        \begin{split}
-        X_{n}&\sim f(X_{n-1},\btheta),\\
-        Y_{n}&\sim g(X_n,\btheta),\\
-        X_0&\sim\mu(\btheta).
+        X_{i}& \sim \varphi(\cdot | X_{i-1},\theta)\\
+        Y_{i}& \sim \psi(\cdot | X_i,\theta)\\
+        X_0& \sim \mu(\theta).
     \end{split} 
     \end{align}
+    para $i = 1,...,n$.
 \end{definition}
 
 En la literatura, a \ref{eq:POMP} también se le conoce como \textit{state-space model} 
-o \textit{hidden Markov model}. Algunas de las aplicaciones de esta clase de modelos 
+o \textit{hidden Markov model}. En este trabajo nos referiremos a este modelo como un POMP, por
+sus siglas en inglés \textit{partially observed Markov Process}. Algunas de las aplicaciones de esta clase de modelos 
 pueden ser consulatadas en \cite{sarkkaBayesianFilteringSmoothing2023}, estas 
 abarcan los campos de la navegación, la ingeniería, telecomunicaciones, física y 
-otros más.
+otros más. En la epidemiología, los procesos de Markov parcialmente observados han sido 
+utilizados para introducir y manejar la incertidumbre en dinámicas de enfermedades infecciosas.
 
-Dado un modelo de Markov parcialmente observado (eq. \ref{eq:POMP}), se ha desarrollado
-suficiente maquinaria teórica y algorítmica para realizar las siguientes tareas 
-\begin{enumerate}
-    \item El \textit{filtrado} consiste en obtener la distribución marginal del 
-    estado al tiempo actual usando la observación actual y aquellas 
-    obtenidas con anterioridad, es decir, se calcula 
-    $$p(X_k|Y_{1:k}),\quad k = 1,...,N.$$
-    \item El \textit{suavizado} consiste en obtener la distribución marginal 
-    del estado en un tiempo anterior usando todas las observaciones acumuladas hasta 
-    el tiempo actual, es decir, se calcula 
-    $$p(X_k|Y_{1:N}),\quad j = 1,...,N-1.$$
-    \item Para la \textit{predicción} se calcula la distribución marginal del estado 
-    en algún tiempo futuro, es decir, se obtiene 
-    $$p(X_{k+n}|Y_{1:k}),\quad k = 1,...,N,\quad n=1,2,...$$
-\end{enumerate}
+Dado que la mayoría de las ocaciones el vector de parámetros es desconocido, la tarea se ha de centrar entonces 
+en inferir tal vector. Para ello, dadas las observaciones del proceso, se tiene que la función de log-verosimilitud 
+es
+\begin{equation}
+    \ell(\theta) = \log f_{Y_{1:n}}(y^*, \theta) =  \log f_{Y_1}(y^*_1|\theta) + \sum_{i=2}^n \log f_{Y_i|Y_{1:i-1}}(y^*_i|y^*_{1:i-1},\theta).
+\end{equation} 
 
-En este trabajo, se centra la atención en los algoritmos de filtrado 
-pues estos son utilizados posteriormente para construir métodos de inferencia 
-en el contexto de observaciones indirectas, 
-como el \textit{particle Markov chain Monte Carlo} que será introducido 
-en el capítulo 3. Las tareas de suavizado y predicción quedan fuera del 
-alcance de este trabajo, pero se refiere a \cite{sarkkaBayesianFilteringSmoothing2023}
-para una introducción.\\
+Las características del modelo POMP permiten representar cada una de las probabilidades condicionales anteriores de la siguiente forma
+\begin{equation}
+    \begin{split}
+        f_{Y_i|Y_{1:i-1}}(y^*_i|y^*_{1:i-1},\theta) &= \int f_{Y_i|X_i}(y^*_i|x_i,\theta)f_{X_i|Y_{1:i-1}}(x_i|y^*_{1:n-1},\theta)dx_i \\
+        f_{Y_1}(y^*_1|\theta) &= \int f_{Y_1|X_1}(y^*_1|x_1,\theta)f_{X_1}(x_1|\theta)dx_1.
+    \end{split}
+\end{equation}
+
+Como es de esperarse, la log-verosimilitud no tiene una forma analítica para un vasto número de modelos, sin embargo, puede
+ser aproximada a través del método de Monte Carlo Secuencial (algoritmo \ref{alg:BF}), que construye una 
 
 Los algoritmos de filtrado de partículas son aproximaciones de Monte Carlo al problema 
 del filtrado. Fueron desarrollados para atacar problemas no lineales para los cuales 

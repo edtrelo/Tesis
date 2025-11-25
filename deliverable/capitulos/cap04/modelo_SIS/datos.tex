@@ -1,0 +1,126 @@
+\subsection{Datos}
+
+El tipo de enfermedades modelables con el modelo SIS son, generalmente, enfermedades 
+que se reportan de manera anual (probablemente sea buena idea citar reportes anuales 
+de estas enfermedades de algunos países). Esto implica que la escala temporal es anual,
+así que no se puede ignorar la dinámica propia de la población, en particular, en una escala
+anual las poblaciones crecen o decrecen, pero difícilmente se mantienen igual. Los modelos 
+epidemiológicos con demografía clásicos usan las tasas de natalidad y mortalidad para plasmar
+de mejor manera los cambios en las poblaciones (hay que hablar de ejemplos). En tales modelos 
+la consecuencia es que las poblaciones ya no son constantes, a diferencia de lo que sucede 
+con el modelo \ref{eq:modeloSIS}. Para preservar a la población, el modelo supone que la tasa
+de natalidad es igual a la tasa de mortalidad. La decisión de seguir usando el modelo 
+\ref{eq:modeloSIS} en vez de desarrollar los mismos resultados teóricos que obtienen 
+\textcite{grayStochasticDifferentialEquation2011} para un nuevo modelo que descarte la igualdad 
+en las tasas de natalidad y mortalidad se debe a que el modelo resultante tendría una matriz 
+de covarianza no positiva definida, y ello implicaría no poder hacer uso de ciertos métodos 
+de estimación, como la verosimilitud simulada y la aproximación por esquema de simulación. Para 
+usar el modelo de \cite{grayStochasticDifferentialEquation2011} para enfermedades longevas 
+se deben seleccionar horizontes temporales de países en particular en los que la población no 
+tuvo un cambio notorio. Ejemplos de esta situación son Italia en los años noventa y España en la 
+década pasada.
+
+Según los datos del Instituto Nacional de Estadística de España, 
+la población en España aumentó tan solo un 1.47\% entre el primer trimestre de 2009 y el primer trimestre 
+de 2019. En la población mayor a 14 años, este incremento fue del 1.59\%. Este dato sugiere que puede 
+considerarse constante a la población española durante este horizonte temporal. Para fines del modelo, 
+$N$ será definida como la media de las poblaciones en España mayores a 14 años reportadas entre 2009 y 2019.
+El mismo instituto también reporta la evolución anual de la esperanza de vida al nacer en España. Se 
+tomará a $\mu^{-1}$ como la media de estas esperanzas de vida en el periodo de estudio. Además,
+el Centro Nacional de Epidemiología, a través de la Unidad de vigilancia de VIH, ITS y hepatitis B y C,
+reportó en \cite{unidaddevigilanciadevihitsyhepatitisbycVigilanciaEpidemiologicaInfecciones2024} la incidencia
+de infección gonocócica (gonorrea) por año en España, desde 1995 hasta 2023. 
+Para el año 2023, la población menor a 15 años que presentó algún caso de infección fue un 0.2\% del total 
+de los casos. Si se hace la suposición de que esto mismo sucede en todo el periodo, entonces puede seleccionarse 
+a los habitantes de España mayores a 14 años como la población a estudiar. El modelo describe la dinámica de la 
+prevalencia de la enfermedad, no de la incidencia. Para estimar el número de casos activos en cualquier 
+momento del año, se toma una duración promedio de infecciosidad fija y se multiplica por la incidencia. 
+Según tal referencia, una persona infectada es infecciosa por las dos semanas, en promedio, en que tardan 
+en surgir los síntomas y la semana que el tratamiento tarda en hacer efecto. Los datos reales del INE y el CNE, junto 
+con la estimación de prevalencia de la infección gonocócica pueden consultarse en la tabla \ref{tab:DatosEspana}. 
+Los valores de los parámetros del modelo que se considerarán fijos están en la tabla \ref{tab:ParametrosFijosSIS}.
+
+\begin{table}[!ht]
+\centering
+\csvreader[
+    tabular={
+        >{\raggedright\arraybackslash}m{2cm}
+        >{\raggedright\arraybackslash}m{2.5cm}
+        >{\raggedright\arraybackslash}m{2.5cm}
+        >{\raggedright\arraybackslash}m{2.5cm}
+        >{\raggedright\arraybackslash}m{2.5cm}
+    },   
+    table head=\toprule
+        \textbf{Año} & \textbf{Población} & \textbf{Expectativa de vida} & \textbf{Incidencia} & \textbf{Prevalencia estimada} \\ \midrule,
+    table foot = \bottomrule
+]{../data/datos_limpios/modelo_SIS/espanadata.csv}{}%
+{\csvcoli & \num[round-precision=0]{\csvcolii} & \csvcoliii & \num[round-precision=0]{\csvcoliv} & \num{\csvcolv}}
+\caption{Distintos datos demográficos usados para establecer el modelo epidemiológico: (de izquierda a derecha)
+    población mayor a 14 años, esperanza de vida al nacer, incidencia de infección gonocócica reportada y estimación de prevalencia, 
+    por año, en España. Datos del Instituto Nacional de Estadística y el Centro Nacional de Epidemiología.}
+\label{tab:DatosEspana}
+\end{table}
+
+Dada la baja disponibilidad de datos, se eligió usar una escala decenal, es decir, el tiempo $t=1$ representa una década. Esto 
+responde también a la necesidad de contar con un tiempo de paso $\Delta t$ pequeño. Bajo el supuesto que $t=1$ es una década, 
+entonces se tienen observaciones en los tiempos $t=0, 0.1, 0.2,...,1.0$, implicando que $\Delta t = 0.1$. 
+
+\begin{table}[!ht]
+    \centering
+    \begin{threeparttable}
+        \begin{tabular}{
+            >{\raggedright\arraybackslash}m{2.5cm}
+            >{\raggedright\arraybackslash}m{3.5cm}
+            >{\raggedright\arraybackslash}m{3.5cm}
+            >{\raggedright\arraybackslash}m{2.5cm}
+        }
+        \hline
+        \textbf{Parámetro} & \textbf{Descripción} & \textbf{Valor} & \textbf{Fuente} \\ \hline
+        $N$ & Tamaño de la población & 39,591,836 & INE\tnote{†} \\ 
+        $\mu^{-1}$ & Expectativa de vida & (8.267-1.5) décadas & INE\tnote{†} \\
+        $\gamma^{-1}$ & Tiempo promedio de recuperación & $\frac{21}{365.25 \times 10}$ décadas &  \\ \hline
+        \end{tabular}
+        \begin{tablenotes}
+            \footnotesize
+            \item[†] Instituto Nacional de Estadística de España.
+        \end{tablenotes}
+        \caption{Parámetros fijos del modelo.}
+        \label{tab:ParametrosFijosSIS}
+    \end{threeparttable}
+\end{table}
+
+Dados los datos mostrados en la tabla \ref{tab:DatosEspana}, se define a la prevalencia estimada normalizada en el año 2009 + $10t$ años 
+como las las observaciones del proceso $\hat{i}_t$, para $t=0.0,0.1,...,1.0$.
+
+\subsection{Valores iniciales de los parámetros a estimar}
+
+Habiendo supuesto que la tasa de mortalidad y recuperación son conocidas, entonces los parámetros a estimar a partir de los datos 
+son el valor esperado de la tasa de infección $\beta$ y la intensidad  del ruido $\sigma$. Los algoritmos que se usarán para 
+realizar la inferencia de estos parámetros requieren de valores iniciales para iniciar los procesos de optimización. 
+
+Para la tasa de transmisión, considérese la parte determinista del modelo SIS normalizado, donde, dando un paso discreto,
+la diferencia entre la prevalencia al tiempo $t$ y $t+\Delta$ está dada por
+\begin{equation}
+    i_{t+\Delta} - i_t = (\beta N i_t (1 - I_t) - (\mu + \gamma) i_t)\Delta.
+\end{equation}
+Las estimaciones de prevalencia están separadas por un año de diferencia. Al trabajar en una escala decenal, 
+se toma a $\Delta = 0.1$. Luego, definiendo a $\hat{y}_t=(\hat{i}_{t+1} - \hat{i}_t) + (\mu + \gamma)\hat{i}_t$ y $\hat{x}_t=
+N\hat{i}_t(1-\hat{I}_t)$, para $t = 0.0,...,0.9$, se ajusta un modelo de regresión lineal sin intercepto $\hat{y}\sim \hat{x}+0$ y se
+define a $\beta_0$, el valor inicial de $\beta$, como la pendiente estimada de tal modelo. 
+
+De la definición \ref{eq:QV}, la varianza cuadrática empírica de $I$ en el intervalo $[0, 10]$ es aproximadamente igual a 
+\begin{equation}
+    [i]^{(n)}_{10} = \sum_{t=0}^{9} (\hat{i}_{(t+1)/10} - \hat{i}_{t/10})^2 \approx \sigma^2  N^2 Q\left(\mathcal L\left(\left\{(t, \hat{i}_t^2(1-\hat{i}_t)^2): 
+    t=0.0,...,1.0\right\}\right), 0.0, 1.0\right),
+\end{equation}
+donde $\mathcal L(\{(x_1,y_1),...,(x_n,y_n)\})$ es una interpolación lineal de $\{(x_1,y_1),...,(x_n,y_n)\}$ y $Q(f,a,b)$ es una
+aproximación numérica de la integral definida de $f$ en $[a,b]$. Despejando $\sigma$, se define a $\sigma_0$, el valor inicial de 
+$\sigma$, como
+\begin{equation}
+    \sigma_0 = \left(\frac{\sum\limits_{t=0}^{9} (\hat{i}_{(t+1)/10} - \hat{i}_{t/10})^2}{N^2 Q\left(\mathcal L\left(\left\{(t, \hat{i}_t^2(1-\hat{i}_t)^2): 
+    t=0.0,...,1.0\right\}\right), 0.0, 1.0\right)}\right)^{\frac{1}{2}}.        
+\end{equation}
+
+Para los datos disponibles, los valores iniciales resultantes son 
+$\beta_0 = 4.403 \times 10^{-6}$ y  $\sigma_0 = 1.653283 \times 10^{-8}$. Véase \texttt{modeloSIS/initial\_conditions}
+para los detalles de la implementación.

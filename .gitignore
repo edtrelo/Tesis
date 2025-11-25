@@ -13,3 +13,10 @@
 *.synctex.gz
 *.pdf
 *.run.xml
+# Fuera de LaTeX
+*.env
+*.txt
+#*.csv
+*.Rhistory
+*.Rdata
+# Para más info: https://stackabuse.com/git-ignore-files-with-gitignore/

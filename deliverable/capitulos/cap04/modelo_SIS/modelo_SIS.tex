@@ -1,0 +1,78 @@
+\section{Modelo SIS}
+
+El modelo SIS se utiliza para modelar la evolución de una enfermedad donde una infección no otorga inmunidad de por vida,
+es decir, un individuo puede contagiarse una y otra vez de la misma enfermedad. Esta dinámica se esquematiza 
+en la figura \ref{fig:SIS_scheme}. Enfermedades como la gonorrea, infección por neumococo 
+\cite{dejesuscabral-garciaCertainAspectsSIS2024,grayStochasticDifferentialEquation2011} y la sífilis \cite{gabrickFractalFractionalSIS2023} se han 
+estudiado usando este modelo. En estos estudios, el modelo SIS estocástico introduce incertidumbre a la dinámica de propagación. 
+Dependiendo la forma en que este ruido es introducido, se llega a uno u otro modelo. (habla de que dejesuscabral-garcia ya hablan de 
+otras formas de meterle incertidumbre). En \cite{dejesuscabral-garciaCertainAspectsSIS2024}, 
+\cite{grayStochasticDifferentialEquation2011} la aleatoriedad se introduce por medio de la perturbación de tasa de transmisión, 
+y el modelo resultante es con el que se presentará a continuación.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{capitulos/cap04/figures/SIS_compartment_model.png}
+    \caption{Esquema de la dinámica de infección descrita por el modelo SIS. Imagen tomada de Wikipedia.}
+    \label{fig:SIS_scheme}
+\end{figure}
+
+En el modelo SIS determinista, la población estudiada se divide en dos grupos: los que tienen la infección y pueden propagarla a otros; 
+y aquellos que pueden contraer la enfermedad como resultado de una interacción con un infectado. Estos grupos se conocen como
+compartimientos. Sea $I_t$ y $S_t$ la proporción de infectados y susceptibles en la población, respectivamente. Suponemos que 
+la población se mantiene constante, y por ende $I_t + S_t = N$, para todo $t\geq 0$. En el modelo SIS determinista, el número 
+de personas en cada compartimiento al tiempo $t$ está dada por la solución a la ecuación diferencial ordinaria
+\begin{equation}\label{eq:modeloSISdet}
+    \begin{split}
+        S_t' &= \mu N - \beta S_tI_t + \gamma I_t - \mu S_t\\
+        I_t' &= b S_tI_t-(\mu + \gamma) I_t,
+    \end{split}
+\end{equation}
+donde $\beta,\gamma,\mu >0$ son las tasas de infección, recuperación y muerte per cápita, respectivamente. Este es un modelo muy sencillo, 
+que supone una población con interacciones homogéneas y tasas de contacto constantes e ignora el tiempo de incubación de la enfermedad.
+
+Considérese la segunda ecuación del sistema \ref{eq:modeloSISdet}. Dado que $S_t+I_t = N$, la ecuación puede reescribirse 
+de la siguiente manera
+\begin{equation}\label{eq:SISinfected}
+    dI_t = (\beta I_t(N-I_t)-(\mu + \gamma) I_t)dt.
+\end{equation}
+Nótese que la ecuación \ref{eq:SISinfected} ya describe todo el sistema. \textcite{dejesuscabral-garciaCertainAspectsSIS2024} introducen la aleatoriedad 
+de la siguiente manera. Si se ve a la tasa de infección $\beta$ como la tasa a la que cada individuo infeccioso establece un potencial 
+contacto infeccioso con otro individuo, entonces un solo infectado realiza $\beta dt$ contactos potencialmente infecciosos con cada uno de los demás individuos de 
+la población en el pequeño intervalo $[t, t+dt]$. Si se hace la suposición que factores ambientales estocásticos actúan 
+simultáneamente en cada individuo al mismo tiempo de tal forma que ahora el número de potenciales contactos infecciosos que 
+hace cada individuo con cualquier otro, $\beta'dt$, sea una variable aleatoria con media $\beta dt$ y varianza $\sigma^2 dt$. 
+Entonces 
+\begin{equation}
+    \beta' dt = \beta dt + \sigma dW_t 
+\end{equation}
+donde $dW_t = W_{t+dt}-W_t$ y $\{W\}_{t\geq 0}$ es un movimiento Browniano estándar. Sustituyendo esta $\beta dt$ en la ecuación 
+\ref{eq:SISinfected} por $\beta' dt$ se tiene que 
+\begin{equation}\label{eq:modeloSIS}
+    dI_t = (\beta I_t(N-I_t)-(\mu + \gamma) I_t)dt + \sigma I_t(N-I_t)dW_t
+\end{equation}
+con valor inicial $I_0 = i_0 \in (0, N)$.
+
+\subsection{Normalización del modelo}
+
+Con el afán de evitar problemas numéricos durante el proceso de inferencia, se normaliza el modelo \ref{eq:modeloSIS}. Sea
+$i_t = \frac{I_t}{N} = \phi(I_t)$. Dado que la nueva variable $i_t$ es una función lineal de $I_t$, se tiene que
+\begin{equation}
+        \frac{\partial \phi}{\partial I_t}=\frac{1}{N},\quad 
+        \frac{\partial^2 \phi}{\partial I_t^2}=0.
+\end{equation}
+Entonces, por el Lema de Itô, se sigue que
+\begin{equation}\label{eq:SISlemaito1}
+    di_t = \frac{1}{N}f(I_t,t)dt + \frac{1}{N}g(I_t,t)dW_t.
+\end{equation}
+Sustituyendo $f(I_t,t)=f(Ni_t, t)$ y $g(I_t,t)=g(Ni_t, t)$ en \ref{eq:SISlemaito1} se obtiene
+el modelo normalizado
+\begin{equation}\label{eq:modeloSIS_normalizado}
+    di_t = (\beta N i_t(1-i_t)-(\mu + \gamma) i_t)dt + \sigma N i_t(1-i_t)dW_t,
+\end{equation}
+donde $i_t\in (0, 1)$.
+
+\input{capitulos/cap04/modelo_SIS/datos.tex}
+\input{capitulos/cap04/modelo_SIS/resultados.tex}
+
+

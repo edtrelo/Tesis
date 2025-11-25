@@ -1,0 +1,144 @@
+\section{Modelo SIR}
+
+El modelo SIR fue introducido por tal. Se trata de un 
+sistema de ecuaciones diferenciales ...\\
+
+
+Meter ruido...\\ 
+
+
+La demostración de la existencia y unicidad de la solución
+de este sistema de ecuaciones diferenciales estocásticas 
+puede consultarse en \cite{aliStochasticModelingInfluenza2024}. 
+Si consideramos una población cerrada, es decir que $\mu = 0$,
+entonces $dS_t + dI_t + dR_t = 0$, por lo que $S_t+I_t+R_t = C$, con 
+$C$ una constante. Si los valores iniciales son tales que su suma 
+es igual a uno, entonces aseguramos que $S_t+I_t+R_t=1$, para todo 
+$t\geq 0$.
+
+\subsection{Modelo matemático}
+
+Sea $S_t, I_t, R_t$ el número de personas dentro de los compartimientos 
+susceptibles, infectados y recuperados, respetivamente, al tiempo $t\geq 0$. 
+Si $S_0+I_0+R_0 = N$, entonces la evolución temporal de los procesos 
+$S_t, I_t$ y $R_t$ está sujeta a la siguiente ecuación
+\begin{align}
+    dS_t &= -\beta S_tI_t dt - \sigma_\beta S_tI_tdW^{(1)}_t, \\
+    dI_t &= (\beta S_tI_t - \gamma I_t)dt + \sigma_\beta S_tI_tdW
+    _t - \sigma_\gamma I_tdW^{(2)}_t,\\
+    R_t &= N - (S_t-I_t).
+\end{align}
+Las ecuaciones diferenciales estocásticas de este modelo pueden ser 
+expresadas en forma matricial del estilo $dX_t = f(X_t,\theta)dt + g(X_t,\theta)dW_t$, como 
+\begin{equation}\label{eq:SIRmatricial}
+    dX_t = 
+    \begin{bmatrix}
+        -\beta S_t I_t\\
+        \beta S_tI_t - \gamma I_t
+    \end{bmatrix}dt + \begin{bmatrix}
+        -\sigma_\beta S_tI_t & 0\\
+        \sigma_\beta S_tI_t & -\sigma_\gamma S_tI_t
+    \end{bmatrix}dW_t,
+\end{equation}
+donde $X_t = (S_t, I_t)'$ y $\theta = (\beta, \gamma, \sigma_\beta, \sigma_\gamma)'$.
+
+\begin{proposition}
+    Sean $S_t,I_t,\beta,\gamma,\sigma_\beta, \sigma_\gamma\geq 0$. Entonces la 
+    matriz de difusión de la ecuación \ref{eq:SIRmatricial} no es definida positiva.
+\end{proposition}
+
+\subsection{Reconstrucción de variables observadas}
+
+En el contexto del estudio de las enfermedades infecciosas, las observaciones de la 
+evolución de la transmisión son escasas y, la mayoría de las veces, indirectas, pero 
+eso no ha sido impedimento para tratar de entender esta dinámica a partir de cualquier
+dato que se haya logrado recolectar.
+
+Supóngase que se tiene acceso a un conjunto de observaciones de nuevas infecciones 
+diarias de manera consecutiva, entre los días $t_0$ y $t_n$. Se denotará el 
+número de nuevos casos de infección el día $t_i$ como $J^{o}_{t_i}$, para
+$i=0,...,n$. Si la tasa de recuperación $\gamma$ es conocida (o se tiene un buen estimado 
+de su valor real), entonces se define a $\gamma' = \lfloor \frac{1}{\gamma}\rfloor$. 
+Luego, se estima el número de infectados y recuperados al tiempo $t$ como
+\begin{equation}
+    (\hat{I}_{t}, \hat{R}_t) = \begin{cases}
+        \left(\sum_{\tau = t_0}^t J_\tau^o, 0\right), &\text{si } t< \gamma',\\
+        \sum\limits_{\tau = t-\gamma'}^tJ_\tau^o, &\text{si }t\geq \gamma',
+    \end{cases}
+\end{equation}
+donde $t=t_0,...,t_n$. Además, si se ha establecido el supuesto que la enfermedad es tal que
+no hay reinfección entonces se puede estimar al número de susceptibles como
+\begin{align}
+    \hat{S}_t^o = N - \sum_{\tau = t_0}^t J_t^o,\\
+    \hat{R}_t^o = N - (\hat{S}_t^o + \hat{I}_t^o),
+\end{align}
+donde $N$ es el número de habitantes.
+
+Las estimaciones anteriores suponen que las observaciones de los nuevos casos de infectados 
+son directas, sin embargo, estas observaciones generalmente solo representan una porción 
+$\rho \in (0,1]$ de los casos reales.
+
+
+\subsection{Valores iniciales para estimación}
+
+En esta sección se construirán los estimadores iniciales para los métodos de estimación que 
+así lo requieran. Dado que algunos métodos de optimización son sensibles a los valores 
+iniciales, es importante tener acceso a valores iniciales plausibles.
+
+Sea $\mathcal T=\{t_0,...,t_n: 0\leq t_0<...<t_n\}$ un  índice de tiempos discretos y 
+$X^{obs} = \{X^{obs}_{t} = \varphi(S_{t}^{obs}, I_{t}^{obs}): t \in \mathcal T\}$ un conjunto 
+de observaciones de alguna función $\varphi: \mathbb R^2 \to \mathbb R^\kappa$ del proceso cuyos
+parámetros quieren ser estimados. Por ejemplo, si las observaciones son completas y directas, 
+entonces $\varphi(x,y)=(x,y)$; pero si solo se tiene acceso al número de infectados reportados 
+en cierto instante de tiempo entonces $\varphi(x,y)=\rho y$, donde $\rho\in (0, 1]$ es una tasa 
+de identificación. 
+
+\subsubsection{Coeficientes de difusión}
+
+En la sección \ref{sec:cap02_teoria} se introdujo la definición de variación cuadrática. (insertar 
+interpretación de la variación cuadrática). Usando el modelo \ref{eq:SIRmatricial}, se obtiene 
+que los parámetros $\sigma_\beta$ y $\sigma_\gamma$ cumplen con la siguiente relación:
+
+\begin{align}\label{eq:QVSIR}
+    \begin{split}
+        \lim\limits_{n\to\infty}\sum_{k=1}^{2^n}(S_{t^{(n)}_{k}}-S_{t^{(n)}_{k-1}})^2& = 
+        \sigma_\beta^2\int_s^t (S_{\tau}I_\tau)^2d\tau,\\
+        \lim\limits_{n\to\infty}\sum_{k=1}^{2^n}(I_{t^{(n)}_{k}}-I_{t^{(n)}_{k-1}})^2& = 
+        \sigma_\beta^2\int_s^t (S_{\tau}I_\tau)^2d\tau + \sigma_\gamma^2\int_s^tI_\tau^2d\tau.
+    \end{split}
+\end{align}
+
+Para construir los estimadores, considérese una observación discreta del proceso 
+$X^{obs} = \{X^{obs}_{t_1},...,X^{obs}_{t_n}\}$, con $X^{obs}_{t_j}=(S_{t_j}^{obs}, I_{t_j}^{obs})'$. 
+Entonces, al tomar una discretización de la integral y la suma, se obtiene la siguiente aproximación 
+a la ecuación \ref{eq:QVSIR}:
+
+\begin{align}
+    \begin{split}
+    (S^{obs}_{t_k}-S^{obs}_{t_{k-1}})^2 \approx \sigma_\beta^2 Q_{t_0, t_n}\left((L_{S^{obs}}(t)L_{I^{obs}}(t))^2\right),\\
+    (I^{obs}_{t_k}-I^{obs}_{t_{k-1}})^2 \approx \sigma_\beta^2 Q_{t_0, t_n}\left((L_{S^{obs}}(t)L_{I^{obs}}(t))^2\right)+
+    \sigma_\gamma^2 Q_{t_0, t_n}\left((L_{I^{obs}}(t))^2\right),
+    \end{split}
+\end{align}
+
+donde $Q_{s, t}(f)$ es la cuadratura de la función $f$ en el intervalo $(s,t)$ y $L_{A}$ es la interpolación lineal 
+del conjunto $A$, que consiste de tiempos y las observaciones correspondientes en cada tiempo.
+
+\subsubsection{Tasa de infección}
+
+Considérese la versión determinista y discreta del modelo \ref{eq:SIRmatricial}. La ecuación en 
+diferencias para los infectados es
+
+\begin{equation}
+    I_{t_k}-I_{t_{k-1}}=\beta S_{t_{k-1}}I_{t_{k-1}} - \gamma I_{t_{k-1}}.
+\end{equation}
+
+Si el valor de $\gamma$ se conoce de antemano, podemos estimar a $\beta$ en el intervalo de tiempo 
+$(t_{k-1},t_{k})$ como
+
+\begin{equation}
+    \hat{\beta}_k = \frac{ I_{t_k}-I_{t_{k-1}} - \gamma I_{t_{k-1}}}{S_{t_{k-1}}I_{t_{k-1}}}.
+\end{equation}
+
+
+\subsubsection{tasa de recuperacion}
