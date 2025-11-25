@@ -4,6 +4,8 @@
     ]{babel} %es-nodecimaldot es para usar punto como separador
 \usepackage{lipsum} % Lorem Ipsum dummy text
 \usepackage{amssymb, amsmath, amsthm, csquotes}
+\usepackage{array}
+\usepackage{threeparttable}
 \usepackage[
     top=1.5in, left=1.25in, right=1.25in, bottom=1.5in
     ]{geometry} % Tamaño de papel y margen
@@ -11,6 +13,17 @@
 \usepackage{import}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{csvsimple}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{
+  output-decimal-marker = {.}, % punto para decimales
+  group-separator = {,},       % coma para separar miles
+  group-minimum-digits = 4,     % empieza a separar desde 1000,
+  round-mode = places,
+  round-precision = 2
+}
+\usepackage{pgfplotstable}
 \floatname{algorithm}{Algoritmo}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}

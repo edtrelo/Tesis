@@ -1,0 +1,48 @@
+\subsection{Resultados}
+
+
+
+
+La estimación de la tasa de infección $\beta$ y el ruido $\sigma$ se realizó por medio 
+de dos métodos: por esquema de aproximación y por 
+verosimilitud simulada. Hay un par de detalles a considerar en cada uno de los métodos.
+En el caso del esquema de aproximación, la paquetería \texttt{Distributions.jl} de Julia 
+tiene implementada la función de densidad de la distribución Normal multivariada, dada por
+\ref{eq:DistNormal}, por lo que no fue necesario usar el desarrollo de la log-verosimilitud
+en \ref{eq:EMlikelihoodapprox}. 
+
+Para ambos métodos, una vez fijada la función de verosimilitud, la optimización se realizó usando 
+el algoritmo L-BFGS. Para evitar que los parámetros estimados tomaran valores no plausibles, se usó una transformación
+logit generalizada para restringir los parámetros a un intervalo definido $[\beta_l, \beta_u]\times[\sigma_l,\sigma_u]$,
+dada por
+\begin{equation}
+    \vartheta = \varphi(\theta) = \left( 
+        \log\left(\frac{\beta - \beta_l}{\beta_u - \beta}\right),
+        \log\left(\frac{\sigma - \sigma_l}{\sigma_u - \sigma}\right)
+     \right),
+\end{equation}
+cuya función inversa es
+\begin{equation}
+    \theta = \varphi^{-1}(\vartheta) = \left(
+        \beta_l + (\beta_u - \beta_l)s(\vartheta_1),
+        \sigma_l + (\sigma_u - \sigma_l)s(\vartheta_2)  
+    \right),
+\end{equation}
+donde $s(x)$ es la función sigmoide
+\begin{equation}
+    s(x) = \frac{1}{1 + e^{-x}}.
+\end{equation}
+Luego, se realizó la minimización de la log-verosimilitud negativa de los parámetros transformados, 
+\begin{small}
+    \begin{equation}
+        \begin{split}
+            -\ell_{\vartheta}(\vartheta) &= -\ell_{\theta}(\varphi^{-1}(\vartheta))-\log(|J(\vartheta)|)\\
+            &= -\ell_\theta(\varphi^{-1}(\vartheta)) - \left(\log(\beta_u - \beta_l) + \log(\sigma_u - \sigma_l) + \sum_{i=1}^{2}\left[
+                \log(1 - s(\vartheta_i)) + \log s(\vartheta_i) 
+            \right]
+            \right) \\
+        \end{split}
+    \end{equation}
+\end{small}
+donde $J$ es la matriz Jacobiana de la transformación 
+$\varphi^{-1}$.

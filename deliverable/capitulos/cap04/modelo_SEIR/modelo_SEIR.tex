@@ -1,0 +1,31 @@
+\section{Modelo SEIR}
+
+Según las propias características de cada enfermedad cuya dinámica 
+pretende modelarse, el modelo SIR, estocástico o determinista, ha 
+tenido que ser ajustado para reflejar tales características. 
+
+(acá hay que listar ejemplos).
+
+En el caso del COVID-19 (citar más ejemplos del covid). En particular, 
+se ha adoptado el modelo SEIR estocástico de \textcite{baltazar-lariosMaximumLikelihoodEstimation2024},
+que se obtiene al perturbar la tasa de muerte natural $\mu$, contrario a la metodología 
+clásica de perturbar la tasa de infección del modelo. La ventaja de este enfoque es que obtienen 
+una verosimilitud manejable que pueden maximizar para inferir los parámetros del modelo. La 
+ecuación diferencial estocástica que rige su modelo es 
+\begin{align}\label{eq:SEIRstochastic}
+    \begin{split}
+        f_\beta(t) &= \beta_s I^s_t + \beta_aI^a _t\\
+        dS_t &= (\mu + \gamma R_t - (f_\beta(t) + \mu)S_t)dt + \sigma(1-S_t)dW_t\\
+        dE_t &= (f_\beta(t)S_t - (\kappa + \mu)E_t)dt - \sigma E_tdW_t \\
+        dI^a_t &= (p\kappa E_t - (\alpha_a+\mu)I^a_t)dt - \sigma I^a_tdW_t\\
+        dI^s_t &= ((1-p)\kappa E_t - (\alpha_s + \mu)I_s)dt - \sigma I^s_t dW_t\\
+        dR_t &= (\alpha_a I^a_t + \alpha_s I_t^s - (\gamma + \mu)R_t)dt - \sigma R_t dW_t
+    \end{split}
+\end{align}
+
+
+
+
+
+
+

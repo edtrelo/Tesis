@@ -1,7 +1,26 @@
+Los procesos epidemiológicos modelados como ecuaciones diferenciales estocásticas (EDEs)
+han sido ampliamente usados con distintos propósitos. 
 
-En cada uno de los modelos tratados a continuación, 
-el ruido fue introducido en el proceso de transmisión de 
-la enfermedad, tal lo hacen \textcite{gourierouxSIRModelStochastic2020}.
 
-\input{capitulos/cap04/modelo_SIS.tex}
-\input{capitulos/cap04/modelo_SIR.tex}
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Modelo} & \textbf{Parámetros} & \textbf{Método} & \textbf{Referencia} \\
+        \hline
+        SIS & $\beta$, $\sigma$ & Esquema de aproximación & Sección \ref{sec:cap04_SIS_results} \\
+        \hline
+        SIR & $\beta$, $\gamma$, $\sigma$ & Verosimilitud simulada & Por definir \\
+        \hline
+        SEIR & $\beta$, $\gamma$, $\alpha$, $\sigma$ & Verosimilitud simulada & Por definir \\
+        \hline
+    \end{tabular}
+    \caption{Modelos epidemiológicos estudiados y métodos de estimación usados.}
+    \label{tab:modelos_epidemiologicos}
+\end{table}
+
+\input{capitulos/cap04/epidemiologia.tex}
+\input{capitulos/cap04/modelo_SIS/modelo_SIS.tex}
+%\input{capitulos/cap04/modelo_SIR.tex}
+%\input{capitulos/cap04/casoB.tex}
+%\input{capitulos/cap04/modelo_SEIR.tex}

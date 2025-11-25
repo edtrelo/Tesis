@@ -1,53 +1,216 @@
 \section{Observaciones directas de todas las variables}
 
-\subsection{Aproximación por esquema de simulación}
+Sea $Y=\{Y_{t_1},...,Y_{t_n}\}$ un conjunto de observaciones completas del proceso $X$ 
+en los tiempos $0\leq t_1 < ... < t_n$. Con \textit{observaciones completas} de un 
+proceso $X\in S\subseteq \mathbb R^d$ se refiere a que $Y_{t_i}\in S \subseteq \mathbb R^d$,
+para toda $i = 1,...,n$. Es decir, las observaciones son de todas las variables 
+del proceso. Además, supóngase que este proceso es uno de difusión, es decir que cumple
+con la ecuación diferencial estocástica
+\begin{equation}\label{eq:cap03}
+    \begin{split}
+        dX_t &= f(X_t,t,\theta)dt + g(X_t,t,\theta)dW_t\\
+        X_0 &= x_0
+    \end{split}
+\end{equation}
+donde $X_t\in \mathbb R^d$, $\theta \in \mathbb R^k$, $f:\mathbb R^d\times \mathbb R^+ \times \mathbb R^k \to 
+\mathbb R^d$, $g: \mathbb R^d\times \mathbb R^+ \times \mathbb R^k  \to \mathbb R^{d\times q}$ y 
+$W_t\in \mathbb R^q$. El conjunto de parámetros $\theta$ es desconocido y, naturalmente,
+la tarea a realizar es proponer uno o varios valores plausibles que podrían ser el valor real. 
 
-Este método no aproxima las densidades de transición directamente 
-sino que aproxima la solución de la ecuación diferencial 
-estocástica de forma tal que el proceso discretizado tiene 
-una densidad de transición que conozcamos 
+En el contexto epidemiológico, las observaciones completas son escasas. Bajo ciertos supuestos pueden 
+reconstruirse ciertas variables faltantes a partir de observaciones disponibles.
+
+\subsection{Estimación por esquema de aproximación}
+
+Al usar un esquema de simulación, se obtiene un proceso aproximado $\{Y_t\}_{t\geq 0}$ con 
+una función de transición, muchas veces, conocida y manejable. El método de inferencia por 
+\textit{esquema de aproximación} consiste en sustituir la verdadera función de transición
+del proceso $X$ por la función de transición del proceso aproximado $Y$ y usarla para 
+construir una verosimilitud aproximada
 \cite{iacusSimulationInferenceStochastic2008}. Según el esquema
 usado para aproximar la solución, obtenemos una u otra densidad de 
 transición. El esquema de Euler-Maruyama, al ser la aproximación 
 más básica de la solución, es generalmente el más elegido 
-cuando se usa este método de inferencia \cite{ozdemircalikusuFittingItoStochastic2021}.
-La aproximación de la solución a la ecuación diferencial estocástica
-\begin{equation*}
-    dX_t = f_\theta(X_t,t)dt + g_\theta(X_t,t)dW_t
-\end{equation*}
-donde $X_t\in \mathbb R^d$, $f_\theta:\mathbb R^d \to 
-\mathbb R^d$, $g_\theta: \mathbb R^d \to \mathbb R^{d\times q}$ y theta
-$W_t\in \mathbb R^q$, por el esquema de Euler-Maruyama está 
-dado de forma recursiva por 
+cuando se usa este método de inferencia, por ejemplo en .
+Dada la ecuación diferencial estocástica \ref{eq:cap03}, la aproximación a su solución 
+por medio del esquema de Euler-Maruyama está dada de forma recursiva por 
 \begin{equation}\label{eq:EM_cap311}
-    Y_{t_{i+1}}= Y_{t_i} + f_\theta(Y_{t_i},t_i)\Delta t_i + 
-g_\theta(Y_{t_i},t_i)(W_{t_{i+1}}-W_{t_i})
+    \begin{split}
+        Y_{t_{i+1}}&= Y_{t_i} + f(Y_{t_i},t_i,\theta)\Delta t_i + 
+        g(Y_{t_i},t_i,\theta)(W_{t_{i+1}}-W_{t_i})\\
+        Y_{t_0} &= x_0.
+    \end{split}
 \end{equation}
-De la Proposición \ref{prop:dist_saltos_MB}, se sabe que 
+
+La proposición \ref{prop:dist_saltos_MB} implica que, si los Brownianos son independientes,
 $W_{t_{i+1}}-W_{t_i}$ tiene distribución $N_q(0,\ \Delta t_i I_q)$ y 
 al aplicarle la transformación lineal en \ref{eq:EM_cap311}, 
 se sigue que
-$$Y_{t_{i+1}}\sim N_d\left(Y_{t_i} + f_\theta(Y_{t_i},t_i)\Delta t_i,\ 
-\Delta t_i g_\theta(Y_{t_i},t_i)g_\theta(Y_{t_i},t_i)^T\right)$$
-Se tiene entonces que el proceso aproximado tiene densidades de 
-transición 
-$$p(Y_{t_{i+1}}|Y_{t_i},\theta) = \frac{\exp\left(-\frac{1}{2\Delta_i}(Y_{t_{i+1}}-
-Y_{t_i}-f_i\Delta_i)(g_ig_i^T)^{-1}(Y_{t_{i+1}}-
-Y_{t_i}-f_i\Delta_i)^T \right)}{\sqrt{2\pi 
-\Delta t_i \det(g_ig_i^T)}}$$
+\begin{equation}\label{eq:transicionES}
+    Y_{t_{i+1}}\sim N_d\left(Y_{t_i} + f(Y_{t_i},t_i,\theta)\Delta t_i,\ 
+ g(Y_{t_i},t_i,\theta)g(Y_{t_i},t_i,\theta)^T\Delta t_i\right).
+\end{equation}
 
-donde se han definido $f_i:=f_\theta(Y_{t_i},t_i)$ y 
-$g_i:=g_\theta(Y_{t_i},t_i)$.
+    El proceso aproximado tiene densidades de transición 
+\begin{small}
+    \begin{equation}
+    p(Y_{t_{i+1}}|Y_{t_i},\theta) = \frac{\exp\left(-\frac{1}{2}(Y_{t_{i+1}}-
+Y_{t_i}-f_i(\theta)\Delta t_i)(\Delta t_ig_i(\theta)g_i(\theta))^{-1}(Y_{t_{i+1}}-
+Y_{t_i}-f_i(\theta)\Delta t_i)^T \right)}{\sqrt{(2\pi)^d 
+ \det(\Delta t_ig_i(\theta)g_i(\theta)^T)}},
+\end{equation}
+\end{small}
+donde $f_i(\theta):=f(Y_{t_i},t_i,\theta)$ y $g_i:=g(Y_{t_i},t_i,\theta)$. Así pues, 
+si se tienen observaciones $x^*$ del proceso en los tiempos $t_0<...<t_n$, se sustituye 
+la verdadera función de transición del proceso por la transición de la aproximación y se obtiene una 
+log-verosimilitud aproximada que puede ser optimizada:
+\begin{equation}\label{eq:EMlikelihoodapprox}
+    \begin{split}
+        \hat{\ell}(\theta|x^*) &= -n\frac{d}{2}\log 2\pi -  \frac{1}{2}\sum_{i=0}^{n-1} \Bigg(
+       \log \det\left(\Delta t_i g_i(\theta)g_i(\theta)^T\right) \\
+        &\quad + \left(x^*_{t_{i+1}} - x^*_{t_i} - f_i(\theta)*\Delta t_i \right)^T
+        \times \Big(\Delta t_i g_i(\theta)g_i(\theta)^T\Big)^{-1} \\
+        &\quad \times \left(x^*_{t_{i+1}} - x^*_{t_i} - f_i(\theta)*\Delta t_i \right)
+        \Bigg),
+    \end{split}
+\end{equation}
+donde $f_i(\theta):=f(x^*_{t_i},t_i,\theta)$ y $g_i:=g(x^*_{t_i},t_i,\theta)$. \textcite{sarkkaAppliedStochasticDifferential2019}
+señalan que esta aproximación será tan precisa como lo sea la aproximación de Euler-Maruyama, por lo que este método
+es adecuado solo para ocasiones en las que las observaciones son suficientemente frecuentes, es decir, 
+donde los $\Delta t_i$ sean pequeños. \textcite{fuchsInferenceDiffusionProcesses2013} discute brevemente las salvedades 
+de este método de inferencia, señalando que el estimador obtenido es inconsistente si el tamaño del paso es fijo y que, 
+para procesos de difusión ergódicos con coeficiente de difusión constante, el estimador tiene un sesgo asintótico 
+de orden del tamaño de paso fijo. Se proporciona a continuación un algoritmo para implementar este método de inferencia.
 
-% Este método de inferencia es compatible para el escenario donde 
-% se tiene acceso las observaciones de $X_t$. En el contexto 
-% epidemiológico, los datos a los que se tiene acceso en la 
-% vida real generalmente son de nuevas infecciones y nuevas 
-% recuperaciones (o nuevos fallecimientos). Es decir, sólo 
-% tenemos acceso a $Z_{t_i} = X_{t_{i+1}}-X_{t_i}$. De \ref{eq:EM_cap311}
-% se sigue que 
-% $$Z_i \sim N_d(f(Y_{}))$$
+\begin{algorithm}
+\caption{Estimación por verosimilitud de esquema de aproximación}
+\label{alg:BF}
+\begin{algorithmic}[1]
+\vspace{0.2cm}
+\Require \parbox[t]{13cm}{
+    Función de deriva $f$, función de difusión $g$, valor inicial $x_0$,
+    tiempos de observación $\{t_1,...,t_n\}$, observaciones $x^*$
+}
+\vspace{0.2cm}
+\Ensure 
+\parbox[t]{13cm}{
+    Estimador de $\theta$
+}
+\vspace{0.2cm}
+\State Definir la función de verosimilitud de la aproxmiación como la ecuación \ref{eq:EMlikelihoodapprox}.
+\State Realizar estimación por máxima verosimilitud o estimación Bayesiana usando la verosimilitud del paso 
+anterior.
+\end{algorithmic}
+\end{algorithm}
+
+Una condición necesaria para utilizar este algoritmo es que la matriz $\Sigma_i(\theta) = g_i(\theta)g_i(\theta)^T$
+sea definida positiva para todo $i=1,...,n$ y para cualquier $\theta\in \Theta$ que el algoritmo de optimización elegido explore.
 
 \subsection{Verosimilitud simulada}
 
+El método de \textit{(máxima) verosimilitud simulada} fue propuesto por \textcite{pedersenNewApproachMaximum1995}
+y Santa-Clara (1995). La versión que se presenta aquí está basada en \textcite{brandtSimulatedLikelihoodEstimation2002}.
 
+Considérese nuevamente el proceso de difusión $X$ definido por la ecuación diferencial estocástica
+\ref{eq:cap03}, donde $d=k=q$ y $W_t$ es un vector de $d$ movimientos Brownianos independientes. Supóngase
+que se cumplen las siguientes condiciones:
+\begin{enumerate}
+    \item Las funciones de deriva $f$ y difusión $g$ son infinitamente diferenciables y todas esas derivadas son continuas y acotadas.
+    \item La matriz de covarianza $\Sigma = g g'$ es definida positiva.
+    \item El vector de parámetros $\theta$ pertenece a un conjunto compacto $\Theta \subset \mathbb R^d$ que contiene al verdadero 
+    valor del parámetro $\theta_0$ en su interior.
+    \item La función de verosimilitud $\ell_n(\theta)$ es dos veces diferenciable continuamente respecto a $\theta$ en una 
+    vecindad del parámetro verdadero. Además, $\mathbb E\left[[\partial \ell(\theta)/\partial \theta][\partial \ell(\theta)/\partial \theta'] \right]$
+    tiene rango completo y es acotado para todo $\theta \in \Theta$.
+    \item Para todo $\lambda \in \mathbb R^d$, $\lambda'I_n(\theta)\lambda \to \infty$, donde
+    \begin{equation}
+        I_n(\theta) = \mathbb E\left[
+            \sum_{i=0}^{n-1} \frac{\partial}{\partial \theta} \log p(X_{t_{i+1}}, t_{i+1}|X_{t_i},t_i,\theta)
+            \frac{\partial}{\partial \theta'} \log p(X_{t_{i+1}}, t_{i+1}|X_{t_i},t_i, 
+            \theta)
+        \right]
+    \end{equation}
+\end{enumerate}
+Las razones detrás de estas suposiciones son mencionadas en \textcite{brandtSimulatedLikelihoodEstimation2002}.
+
+La idea de este método es construir una aproximación de las densidades de transición y con ellas definir una función
+de verosimilitud aproximada, cuyo vector que la maximiza es el estimador de máxima verosimilitud simulada.
+
+Supóngase que las observaciones $Y$ han sido tomadas en tiempos equidistantes. Se comienza con una discretización 
+del proceso $X_t$, entre los tiempos $t_{i}$ y $t_{i+1}$, siguiendo el esquema de Euler-Maruyama con
+un tamaño de paso $h = \Delta t / M$. Siguiendo una serie de manipulaciones (que hay que desarrollar), se llega 
+a la siguiente aproximación de la densidad de transición del proceso $X$:
+\begin{equation}\label{eq:SLE}
+    \widehat{q}_{M,S}(y_{t_{i+1}}, t_{i+1},y_{t_{i}}, t_{i}|\ \theta ):= \frac{1}{ S}\sum_{s=1}^S 
+    \phi\left(y_{t_{i+1}}; f(z_s;\theta)\cdot h, g(z_s;\theta)\cdot \sqrt{h}\right)
+\end{equation}
+donde 
+\begin{enumerate}
+    \item $\phi(\cdot; \mu, \sigma)$ es la función de densidad de la distribución Normal con media $\mu$ y desviación estándar $\sigma$,
+    \item $z_s$ representa el penúltimo valor de una realización independiente del método de Euler-Maruyama de $M$ pasos entre $t_i$ y $t_{i+1}$ 
+    con valor inicial $X_{t_i}=y_{t_i}$, para cada $s=1,...,S$.
+\end{enumerate}
+La expresión \ref{eq:SLE} converge a la densidad de transición del proceso continuo $X$ cuando $S\to \infty$ y $M \to \infty$ \cite{brandtSimulatedLikelihoodEstimation2002}.\\
+
+Dada la aproximación \ref{eq:SLE} para las densidades de transición y bajo el supuesto de que el valor inicial $X_0$ está fijo, entonces podemos dar una aproximación a la 
+log-verosimilitud $\ell_{N}(\theta)$. Tal como en \cite{brandtSimulatedLikelihoodEstimation2002}, se define al estimador de máxima verosimilitud simulada $\hat{\theta}_{N,M,S}$ 
+como el valor que maximiza:
+\begin{equation}\label{eq:SMLE}
+    \ell_{N,M,S}(\theta) = \sum_{i=0}^{N-1}\log\widehat{q}_{M,S}(y_{t_{i+1}}, t_{i+1},y_{t_{i}}, t_{i}|\ \theta )
+\end{equation}
+\textcite{brandtSimulatedLikelihoodEstimation2002} demuestran que esta aproximación converge a la verdadera función de log-verosimilitud y que el parámetro que maximiza a \ref{eq:SMLE} 
+converge al parámetro que maximiza a la verdadera función de log-verosimilitud. A continuación se presenta un algoritmo para implementar este método de inferencia.
+
+
+\begin{algorithm}
+\caption{Cálculo de la Log-Verosimilitud Simulada $\ell_{N,M,S}(\theta)$}
+\label{alg:SimulatedLikelihoodCalculation}
+\begin{algorithmic}[1]
+\Require $N$ observaciones $\{y_0,...,y_N\}$, $\Delta t$, número $M$ de pasos de Euler, número $S$ de
+simulaciones Monte Carlo, EDE que define al proceso $X$
+\Ensure 
+\parbox[t]{13cm}{
+    Aproximación a la log-verosimilitud de $\theta$
+}
+\vspace{0.2cm}
+\Function{CALCULAR\_SMLE}{$\theta$}
+\State $h \gets \Delta t / M$.
+\State $\ell \gets 0$ %\Comment{Inicializar la log-verosimilitud acumulada}
+\For{$i = 0$ to $N-1$} %\Comment{Iterar sobre los intervalos de observación}
+    \State $\widehat{q}_{M,S} \gets 0$ %\Comment{Inicializar la densidad simulada para el intervalo}
+    \For{$s = 1$ to $S$} %\Comment{Realizar $S$ simulaciones independientes}
+        \State Inicializar trayectoria: $X^{(s)}_{0} \gets y_{t_i}$.
+        \For{$k = 0$ to $M-1$} %\Comment{Esquema de Euler-Maruyama ($M$ pasos)}
+            \State Generar ruido $\epsilon_k \sim \mathcal{N}(0, 1)$.
+            \State $X^{(s)}_{k+1} \gets X^{(s)}_{k} + f(X^{(s)}_{k}, \theta) \cdot h + g(X^{(s)}_{k}, \theta) \cdot \sqrt{h} \cdot \epsilon_k$.
+        \EndFor
+        \State $z_s \gets X^{(s)}_{M-1}$ %\Comment{Penúltimo valor simulado}
+        \State Calcular densidad Normal $\phi_s \gets \phi\left(y_{t_{i+1}}; f(z_s;\theta)\cdot h, g(z_s;\theta)\cdot \sqrt{h}\right)$.
+        \State $\widehat{q}_{M,S} \gets \widehat{q}_{M,S} + \phi_s$.
+    \EndFor
+    \State $\widehat{q}_{M,S} \gets \frac{1}{S} \cdot \widehat{q}_{M,S}$ %\Comment{Densidad de transición aproximada (\ref{eq:SLE})}
+    \State $\ell \gets \ell + \log(\widehat{q}_{M,S})$ %\Comment{Acumular log-verosimilitud (\ref{eq:SMLE})}
+\EndFor
+\State \textbf{Retornar} $\ell$
+\EndFunction
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Estimación por Máxima Verosimilitud Simulada (SMLE)}
+\label{alg:SMLE_Main}
+\begin{algorithmic}[1]
+\Require \parbox[t]{13cm}{
+    Punto de inicio $\theta_0$, $N$ observaciones $\{y_0,...,y_N\}$, $\Delta t$, número $M$ de pasos de Euler, número $S$ de
+    simulaciones Monte Carlo, EDE que define al proceso $X$
+}
+\Ensure 
+\parbox[t]{13cm}{
+    Estimador de Máxima Verosimilitud Simulada $\hat{\theta}_{N,M,S}$
+}
+\vspace{0.2cm}
+\State Definir la función objetivo $\ell_{N,M,S}(\theta)$ mediante el algoritmo \ref{alg:SimulatedLikelihoodCalculation}.
+\State \textbf{Optimizar:} $\hat{\theta}_{N,M,S} \gets \underset{\theta}{\arg\max} \ \ell_{N,M,S}(\theta)$
+\end{algorithmic}
+\end{algorithm}

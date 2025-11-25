@@ -1,0 +1,15 @@
+\section{Caso B: pandemia de COVID-19}
+
+A principios del año 2020, el virus Sars-CoV-2 provocó una pandemia a nivel global.
+
+\subsection{Datos disponibles}
+
+En México, se tiene acceso a los datos diarios de casos confirmados, sospechosos, negativos 
+y de defunciones, tanto a nivel municipal como estatal, a partir del 26 de febrero de 2020.
+Si bien el sitio oficial presenta un tablero donde también se reportan los casos activos, no 
+se tiene acceso a una serie histórica. Para estimar el número de casos activos por día ($I_t$), 
+se ha seguido una de las metodologías que se describe en \cite{alvarezEstimatingActiveCases2021}: 
+se toma como suposición que cada nuevo caso es activo durante un tiempo fijo, siendo este la 
+suma de las medianas de los periodos de  recuperación post prueba (7 días) y el tiempo en que los 
+pacientes se sintieron enfermos antes de salir positivo (3 días). Claro, esta estimación está sujeta 
+al inherente error de medición de nuevos contagios. En 
